@@ -8,6 +8,6 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body>
-        <p>Certrust</p>
+        @yield('body')
     </body>
 </html>
