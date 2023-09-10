@@ -19,6 +19,7 @@ main{
     #wrapper{
         height: 100%;
         backdrop-filter: blur(250px);
+        background-color: rgba(0,0,0,0.1);
         border-radius: 15px;
         padding: 12px;
         overflow-y: auto;
@@ -100,6 +101,10 @@ header{
             @include media('>medium') {
                 display: block;
             }
+        }
+
+        &--active{
+            color: var(--accent);
         }
     }
 }

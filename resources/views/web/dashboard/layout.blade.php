@@ -9,6 +9,9 @@
         <div class="flare" style="left: 0px;bottom: 400px; opacity: 0.3">
             <img src="/images/primary-flare.png" alt="flare">
         </div>
+        <div class="flare" style="left: 300px;top: 400px; opacity: 0.6; transform: scale(0.5)">
+            <img src="/images/accent-flare.png" alt="flare">
+        </div>
         <div id="wrapper">
             @yield('main')
             @include('web.dashboard.partials.footer')
