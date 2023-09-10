@@ -8,6 +8,15 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    resolve: {
+        resolve: {
+            alias: {
+                '@': '/resources',
+                '@js': '/resources/js',
+                '@styles': '/resources/styles',
+            },
+        },
+    },
     server: {
         hmr: {
             host: 'localhost'
