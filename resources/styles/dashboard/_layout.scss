@@ -13,7 +13,21 @@ body{
 main{
     height: 100%;
     width: 100%;
-    overflow-y: auto;
+    padding: 12px;
+    overflow-y: hidden;
+
+    #wrapper{
+        height: 100%;
+        backdrop-filter: blur(250px);
+        border-radius: 15px;
+        padding: 12px;
+        overflow-y: auto;
+    }
+
+    .flare{
+        position: fixed;
+        z-index: -1;
+    }
 }
 
 header{
