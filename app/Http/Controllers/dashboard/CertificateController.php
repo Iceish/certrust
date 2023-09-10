@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Certificate;
 use App\Repositories\CertificateRepository;
 use App\Services\OpensslService;
 
@@ -14,7 +15,13 @@ class CertificateController extends Controller
     ){}
     public function index()
     {
-        $certificates = $this->certificateRepository->all();
-        return view('web.dashboard.sections.certificates.index', compact('certificates'));
+        $authorities = $this->certificateRepository->allSelfSigned();
+        return view('web.dashboard.sections.certificates.index', compact('authorities'));
+    }
+
+    public function show(Certificate $authority)
+    {
+        $certificates = $this->certificateRepository->allIssuedBy($authority->id);
+        return view('web.dashboard.sections.certificates.show', compact('certificates', 'authority'));
     }
 }

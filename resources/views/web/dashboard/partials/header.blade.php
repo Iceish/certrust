@@ -6,7 +6,7 @@
                 <p><a class="nav__link @if(Route::is('home')) nav__link--active @endif" href="{{ route('home') }}"><i class="fa-solid fa-house"></i><span class="nav__link--text"> Home</span></a></p>
             </li>
             <li>
-                <a class="nav__link @if(Route::is('dashboard.certificates.index')) nav__link--active @endif" href="{{ route('dashboard.certificates.index') }}"><i class="fa-solid fa-lock"></i><span class="nav__link--text"> Certificates</span></a>
+                <a class="nav__link @if(Route::is('dashboard.authorities.*')) nav__link--active @endif" href="{{ route('dashboard.authorities.index') }}"><i class="fa-solid fa-lock"></i><span class="nav__link--text"> Authorities</span></a>
             </li>
             <li>
                 <a class="nav__link" href="#"><i class="fa-solid fa-user"></i><span class="nav__link--text"> Management</span></a>

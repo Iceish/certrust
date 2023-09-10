@@ -19,14 +19,16 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('/dashboard')->name('dashboard.')->group(function () {
 
-    Route::controller(CertificateController::class)->name('certificates.')->prefix('certificates')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+
+    Route::controller(CertificateController::class)->name('authorities.')->prefix('authorities')->group(function () {
         Route::get('/', 'index')->name('index');
 //        Route::get('/{brand}/edit', 'edit')->name('edit');
 //        Route::post('/{brand}/edit', 'update')->name('update');
 //        Route::get('/{brand}/delete', 'destroy')->name('delete');
 //        Route::get('/create', 'create')->name('create');
 //        Route::post('/create', 'store')->name('store');
-//        Route::get('/{brand}', 'show')->name('show');
+        Route::get('/{authority}', 'show')->name('show');
     });
 
 });

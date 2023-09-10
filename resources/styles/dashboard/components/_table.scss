@@ -1,0 +1,34 @@
+.table{
+    border: 2px solid rgba(0,0,0,0.1);
+    border-radius: 15px;
+    overflow: hidden;
+
+    .separator{
+        width: 100%;
+        height: 2px;
+        background-color: rgba(0,0,0,0.1);
+    }
+
+    .header{
+
+    }
+
+    .cell{
+        min-height: 40px;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 5px;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .row{
+        &:hover{
+            background-color: rgba(0,0,0,0.1);
+        }
+
+        > div{
+
+        }
+    }
+}

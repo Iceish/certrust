@@ -33,6 +33,16 @@ class CertificateRepository
         return $this->certificate->all();
     }
 
+    public function allIssuedBy(string $id)
+    {
+        return $this->certificate->where('issuer', '=', $id)->whereColumn('issuer','!=', 'id')->get();
+    }
+
+    public function allSelfSigned()
+    {
+        return $this->certificate->whereColumn('issuer', '=', 'id')->get();
+    }
+
     public function update(string $id, array $data)
     {
         return $this->certificate->find($id)->update($data);
