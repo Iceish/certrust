@@ -20,12 +20,6 @@
 
 @push('scripts')
     <script>
-        const toggler = document.querySelector('.nav__toggler');
-        const nav = document.querySelector('.nav');
-
-        toggler.addEventListener('click', () => {
-            nav.classList.toggle('nav--active');
-        });
     </script>
 @endpush
 
