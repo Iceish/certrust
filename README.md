@@ -1,66 +1,86 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
+    <img src="./docs/assets/certrust_colored.svg" width="100px">
+</div>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Certrust - Self-Hosted Local SSL Certificate Manager
 
-## About Laravel
+Certrust is an open-source, self-hosted Local SSL Certificate Manager designed to simplify the management of SSL certificates for local development environments. It empowers developers and system administrators to create and manage certificate authorities, generate SSL certificates, and streamline certificate renewal processes. Certrust is built on top of the OpenSSL library, ensuring robust security practices.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<div align="center">
+    <img src="./docs/assets/alert-developpement.png" width="75%">
+</div>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📋 Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Certificate Authority Management:** Easily create and manage root authorities and sub-authorities to issue SSL certificates for your local domains.
 
-## Learning Laravel
+- **Certificate Generation:** Generate SSL certificates for your local domains using the authorities you've created.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Certificate Renewal:** Automate certificate renewal processes to ensure continuous SSL security.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Docker Integration:** Certrust is Docker-ready, making it convenient for users to self-host the service without complicated setup procedures.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Web Application:** The Certrust web app is built using Laravel, providing a user-friendly interface for managing certificates and authorities.
 
-## Laravel Sponsors
+## 🚀 Getting Started
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+To start using Certrust, follow these steps:
 
-### Premium Partners
+1. **Clone the Repository:** Begin by cloning this repository to your local machine:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+   ```bash
+   https://github.com/EnzoGzz/certrust.git
+   ```
 
-## Contributing
+2. **Docker Setup:** Install Docker and Docker Compose if you haven't already. Certrust includes Docker Compose configurations for easy deployment.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. **Initialize Certrust:** Navigate to the project directory and start Certrust using Docker Compose:
 
-## Code of Conduct
+   ```bash
+   cd certrust
+   docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php82-composer:latest \
+    composer install --ignore-platform-reqs
+   ```
+4. _(Optional)_ **Add sail alias:** to your prompt. Add the following to your ~/.bashrc or ~/.zshrc file:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    ```bash
+    alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+    ```
+5. **Start Certrust:** Start Certrust using Docker Compose:
 
-## Security Vulnerabilities
+   ```bash
+   sail up -d
+   ```
+6. **Launch migrations:** Launch the migrations to create the database tables:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   ```bash
+   sail artisan migrate
+   ```
+7. _(Optional)_ **Run dev environment:** Run the following command to run the dev environment:
 
-## License
+   ```bash
+   sail npm run dev
+   ```
+8. **Access the Web App:** Once the containers are up and running, access the Certrust web app through your browser by visiting `http://localhost`.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## ❤️ Contributing
+
+Certrust is an open-source project, and we welcome contributions from the community. Here's how you can get involved:
+
+- **Open Issues:** If you encounter issues or have ideas for enhancements, please [open an issue](https://github.com/your-username/certrust/issues) to share your feedback.
+
+- **Pull Requests:** Contribute to the project by submitting pull requests. Follow our contribution guidelines and coding standards.
+
+- **Spread the Word:** If you find Certrust useful, help us reach more users by sharing it with your network.
+
+## ⛓ License
+
+Certrust is released under the [MIT License](LICENSE). You are free to use, modify, and distribute the software in accordance with the terms of the license.
+
+## 🌠 What's next ?
+
+Certrust is in its early stages, and there are numerous possibilities for future development and improvement. Your contributions and feedback will help shape the project's evolution. Together, we can create a powerful tool for SSL certificate management in local development environments.
