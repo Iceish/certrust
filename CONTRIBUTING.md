@@ -1,5 +1,3 @@
-Certainly! Here's a basic `CONTRIBUTING.md` template for your Certrust project:
-
 # Contributing to Certrust
 
 Certrust is an open-source project, and we welcome contributions from the community. Whether you're a developer, designer, tester, or have other skills to offer, you can help us make Certrust better.
@@ -52,9 +50,10 @@ To contribute to Certrust, follow these steps:
 
 7. **Submit a Pull Request:** Go to the [Certrust repository](https://github.com/EnzoGzz/certrust) and create a pull request. Describe your changes and provide context for reviewers.
 
-## Code of Conduct
+### Commit messages
 
-Please note that Certrust has a [Code of Conduct](CODE_OF_CONDUCT.md) to ensure a welcoming and inclusive community. We expect all contributors to adhere to these guidelines.
+Follow the [conventional commits guidelines](CONVENTIONAL_COMMIT_MESSAGES.md) to *make reviews easier* and to make
+the VCS/git logs more valuable.
 
 ## License
 
