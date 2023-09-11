@@ -4,6 +4,9 @@
     <h2 id="section-title"><i class="fa-solid fa-lock"></i> Authorities</h2>
     <br>
 
+    <a href="{{ route('dashboard.authorities.create') }}" class="btn">
+        New Authority
+    </a>
     <div class="table">
         <div class="cell header">
             <div>common_name</div>

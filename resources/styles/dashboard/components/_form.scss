@@ -1,0 +1,29 @@
+@use '/resources/styles/utils' as *;
+
+.form{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+
+    @include media('>medium'){
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @include media('>large'){
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    &__field{
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+
+        > input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),{
+            background-color: var(--secondary);
+            border: 0;
+            border-radius: 5px;
+            padding: 10px;
+            color: var(--text);
+        }
+    }
+}

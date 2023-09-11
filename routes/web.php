@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\dashboard\CertificateController;
+use App\Http\Controllers\dashboard\AuthorityController;
 use App\Http\Controllers\dashboard\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,13 +21,13 @@ Route::prefix('/dashboard')->name('dashboard.')->group(function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
-    Route::controller(CertificateController::class)->name('authorities.')->prefix('authorities')->group(function () {
+    Route::controller(AuthorityController::class)->name('authorities.')->prefix('authorities')->group(function () {
         Route::get('/', 'index')->name('index');
 //        Route::get('/{brand}/edit', 'edit')->name('edit');
 //        Route::post('/{brand}/edit', 'update')->name('update');
 //        Route::get('/{brand}/delete', 'destroy')->name('delete');
-//        Route::get('/create', 'create')->name('create');
-//        Route::post('/create', 'store')->name('store');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/create', 'store')->name('store');
         Route::get('/{authority}', 'show')->name('show');
     });
 

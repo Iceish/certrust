@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('country_name');
             $table->string('state_or_province_name')->nullable();
             $table->string('locality_name')->nullable();
-            $table->string('public_key');
-            $table->string('private_key');
+            $table->longText('public_key');
+            $table->longText('private_key');
             $table->dateTimeTz('expires_on');
             $table->dateTimeTz('issued_on');
             $table->string('sha256_fingerprint');
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('certificates');
+        Schema::dropIfExists('authorities');
     }
 };
