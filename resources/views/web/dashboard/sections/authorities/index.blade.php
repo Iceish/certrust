@@ -16,7 +16,6 @@
             <div>state_or_province_name</div>
             <div>locality_name</div>
             <div>expires_on</div>
-            <div>action</div>
         </div>
         <div class="separator"></div>
         @foreach($authorities as $authority)
@@ -28,7 +27,6 @@
                 <div>{{ $authority->state_or_province_name }}</div>
                 <div>{{ $authority->locality_name }}</div>
                 <div>{{ $authority->expires_on }}</div>
-                <div><i class="fa-solid fa-file-lines"></i> <i class="fa-solid fa-key"></i> <i class="fa-solid fa-trash"></i></div>
             </a>
         @endforeach
     </div>

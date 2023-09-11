@@ -23,9 +23,7 @@ Route::prefix('/dashboard')->name('dashboard.')->group(function () {
 
     Route::controller(AuthorityController::class)->name('authorities.')->prefix('authorities')->group(function () {
         Route::get('/', 'index')->name('index');
-//        Route::get('/{brand}/edit', 'edit')->name('edit');
-//        Route::post('/{brand}/edit', 'update')->name('update');
-//        Route::get('/{brand}/delete', 'destroy')->name('delete');
+        Route::get('/{authority}/delete', 'destroy')->name('destroy');
         Route::get('/create', 'create')->name('create');
         Route::post('/create', 'store')->name('store');
         Route::get('/{authority}', 'show')->name('show');

@@ -31,6 +31,12 @@ class AuthorityController extends Controller
         return view('web.dashboard.sections.authorities.create');
     }
 
+    public function destroy(Certificate $authority)
+    {
+        $this->certificateRepository->delete($authority->id);
+        return redirect()->route('dashboard.authorities.index');
+    }
+
     public function store(CreateAuthorityRequest $request)
     {
         $data = $request->validated();

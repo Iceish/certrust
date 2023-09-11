@@ -3,6 +3,8 @@
 @section('main')
     <h2 id="section-title"><i class="fa-solid fa-lock"></i> {{ $authority->common_name }}'s certificates</h2>
     <br>
+    <a href="#"><i class="fa-solid fa-file-lines"></i></a> <a href="#"><i class="fa-solid fa-key"></i></a> <a href="{{ route('dashboard.authorities.destroy', $authority->id) }}"><i class="fa-solid fa-trash"></i></a>
+
 
     <div class="table">
         <div class="cell header">
