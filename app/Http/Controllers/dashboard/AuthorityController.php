@@ -35,13 +35,22 @@ class AuthorityController extends Controller
     {
         $data = $request->validated();
         $authority = $this->opensslService->generateSelfSignedCertificate($data);
-        $data['expires_on'] = (new \DateTime())->modify($data['validity_days'] . ' days');
-        $data['issued_on'] = new \DateTime();
-        $data['issuer'] = 'this';
-        $data['sha256_fingerprint'] = $this->opensslService->viewCertificate($authority['public_key'])['extensions']['authorityKeyIdentifier'];
-        $data['sha1_fingerprint'] = $this->opensslService->viewCertificate($authority['public_key'])['extensions']['authorityKeyIdentifier'];
-        unset($data['validity_days']);
-        $this->certificateRepository->create([...$authority, ...$data]);
+        $certificate = [
+            "common_name" => $data['common_name'],
+            "organization" => $data['organization'],
+            "organization_unit" => $data['organization_unit'],
+            "country_name" => $data['country_name'],
+            "state_or_province_name" => $data['state_or_province_name'],
+            "locality_name" => $data['locality_name'],
+            "public_key" => $authority['public_key'],
+            "private_key" => $authority['private_key'],
+            "expires_on" => (new \DateTime())->modify($data['validity_days'] . ' days'),
+            "issued_on" => new \DateTime(),
+            "issuer" => 'this',
+            "sha256_fingerprint" => $authority['fingerprints']['sha256'],
+            "sha1_fingerprint" => $authority['fingerprints']['sha1'],
+        ];
+        $this->certificateRepository->create($certificate);
         return redirect()->route('dashboard.authorities.index');
     }
 

@@ -30,10 +30,17 @@ class OpensslService
             "commonName" => $data['common_name'],
         ), $privateKey);
         $certificate = openssl_csr_sign($certificate, null, $privateKey, $data['validity_days']);
+        $sha256_fingerprint = openssl_x509_fingerprint($certificate, "sha256");
+        $sha1_fingerprint = openssl_x509_fingerprint($certificate, "sha1");
         openssl_x509_export($certificate, $certificateString);
         return(array(
             "private_key" => $privateKey,
-            "public_key" => $certificateString,));
+            "public_key" => $certificateString,
+            "fingerprints" => array(
+                "sha256" => $sha256_fingerprint,
+                "sha1" => $sha1_fingerprint,
+            ),
+            ));
         }
 
     public function generateCertificateSigningRequest(){
