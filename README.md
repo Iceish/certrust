@@ -77,6 +77,8 @@ Certrust is an open-source project, and we welcome contributions from the commun
 
 - **Spread the Word:** If you find Certrust useful, help us reach more users by sharing it with your network.
 
+Check out our [contributing guidelines](CONTRIBUTING.md) for more information.
+
 ## ⛓ License
 
 Certrust is released under the [GPL-3.0 License](LICENSE.md). You are free to use, modify, and distribute the software in accordance with the terms of the GPL-3.0 license.
