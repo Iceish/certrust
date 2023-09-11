@@ -79,7 +79,7 @@ Certrust is an open-source project, and we welcome contributions from the commun
 
 ## ⛓ License
 
-Certrust is released under the [MIT License](LICENSE). You are free to use, modify, and distribute the software in accordance with the terms of the license.
+Certrust is released under the [GPL-3.0 License](LICENSE.md). You are free to use, modify, and distribute the software in accordance with the terms of the GPL-3.0 license.
 
 ## 🌠 What's next ?
 
