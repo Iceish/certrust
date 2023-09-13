@@ -4,7 +4,7 @@
     <h2 id="section-title"><i class="fa-solid fa-lock"></i> Authorities</h2>
     <br>
 
-    <a href="{{ route('dashboard.authorities.create') }}" class="btn">
+    <a href="{{ route('dashboard.authorities.create', ['type'=>'0']) }}" class="btn">
         New Authority
     </a>
     <div class="table">

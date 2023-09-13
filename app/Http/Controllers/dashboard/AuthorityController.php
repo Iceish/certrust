@@ -43,7 +43,7 @@ class AuthorityController extends Controller
         $data = $request->validated();
         $authority = $this->opensslService->generateSelfSignedCertificate($data);
         $certificate = [
-            "type" => CertificateTypeEnum::CA,
+            "type" => $data['type'],
             "common_name" => $data['common_name'],
             "organization" => $data['organization'],
             "organization_unit" => $data['organization_unit'],
@@ -54,7 +54,7 @@ class AuthorityController extends Controller
             "private_key" => $authority['private_key'],
             "expires_on" => (new \DateTime())->modify($data['validity_days'] . ' days'),
             "issued_on" => new \DateTime(),
-            "issuer" => 'this',
+            "issuer" => $data['issuer'] ?? 'this',
             "sha256_fingerprint" => $authority['fingerprints']['sha256'],
             "sha1_fingerprint" => $authority['fingerprints']['sha1'],
         ];

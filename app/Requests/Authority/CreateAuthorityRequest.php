@@ -9,6 +9,8 @@ class CreateAuthorityRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'type' => 'required|numeric',
+            'issuer' => 'uuid',
             'common_name' => 'required|string|max:255',
             'organization' => 'required|string|max:255',
             'organization_unit' => 'required|string|max:255',
