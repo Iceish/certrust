@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <title>Certrust - SSL made easy</title>
         @vite(['resources/styles/app.scss', 'resources/js/app.js'])
 
@@ -11,6 +10,12 @@
     </head>
     <body>
         @yield('body')
+
+        <script src="{{ @asset('js/utils/cookie.js') }}"></script>
+        <script src="{{ @asset('js/theme-switch.js') }}"></script>
+        <script>
+
+        </script>
         @stack('scripts')
     </body>
 </html>

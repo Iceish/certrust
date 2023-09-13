@@ -13,6 +13,7 @@
             <img src="/images/accent-flare.png" alt="flare">
         </div>
         <div id="wrapper">
+            @include('web.dashboard.partials.hero')
             @yield('main')
             @include('web.dashboard.partials.footer')
         </div>
