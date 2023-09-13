@@ -1,9 +1,6 @@
 const toggleSwitch = document.querySelector('input[type="checkbox"]#theme-switch__btn');
 
-if(getCookie("theme") === "dark"){
-    toggleSwitch.checked = true;
-    document.documentElement.setAttribute('data-theme', 'dark');
-}
+// data-theme is set server-side, 'light' by default.
 
 function switchTheme(e) {
     if (e.target.checked) {
