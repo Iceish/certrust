@@ -36,10 +36,13 @@ main{
         padding: 16px;
         margin-bottom: 50px;
 
-        #theme-switch{
-            width: 20px;
-            height: 20px;
-            background-color: gray;
+        .theme-switch{
+            label{
+                cursor: pointer;
+            }
+            &__btn{
+                display: none;
+            }
         }
     }
 
@@ -78,7 +81,7 @@ header{
         flex-direction: column;
         align-items: center;
         gap: 50px;
-
+        color: var(--clr-text);
         @include media('>small'){
             padding: 16px;
         }

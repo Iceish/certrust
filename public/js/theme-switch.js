@@ -1,4 +1,4 @@
-const toggleSwitch = document.querySelector('input[type="checkbox"]#theme-switch');
+const toggleSwitch = document.querySelector('input[type="checkbox"]#theme-switch__btn');
 
 if(getCookie("theme") === "dark"){
     toggleSwitch.checked = true;

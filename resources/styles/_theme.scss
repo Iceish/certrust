@@ -1,10 +1,4 @@
-:root{
-    --text: #F9F8F8;
-    --background: #272838;
-    --primary: #F5853F;
-    --secondary: #131420;
-    --accent: #3faff5;
-
+:root, .force-light-theme{
     --clr-text: #131420;
     --clr-text-muted: #272838;
     --clr-background: #f0f2f5;
@@ -13,7 +7,7 @@
     --clr-secondary: #3faff5;
 }
 
-[data-theme="dark"]{
+[data-theme="dark"], .force-dark-theme{
     --clr-text: #f0f2f5;
     --clr-text-muted: #272838;
     --clr-background: #272838;
