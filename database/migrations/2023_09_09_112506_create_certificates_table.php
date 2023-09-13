@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('certificates', function (Blueprint $table) {
             $table->uuid('id');
             $table->timestamps();
+            $table->tinyinteger('type'); // 0 = CA, 1 = SUB_CA, 2 = CERT
             $table->string('common_name');
             $table->string('organization');
             $table->string('organization_unit')->nullable();

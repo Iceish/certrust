@@ -18,15 +18,15 @@
             <div>expires_on</div>
         </div>
         <div class="separator"></div>
-        @foreach($authorities as $authority)
-            <a href="{{ route('dashboard.authorities.show', $authority->id) }}" class="cell row">
-                <div>{{ $authority->common_name }}</div>
-                <div>{{ $authority->organization }}</div>
-                <div>{{ $authority->organization_unit }}</div>
-                <div>{{ $authority->country_name }}</div>
-                <div>{{ $authority->state_or_province_name }}</div>
-                <div>{{ $authority->locality_name }}</div>
-                <div>{{ $authority->expires_on }}</div>
+        @foreach($rootAuthorities as $rootAuthority)
+            <a href="{{ route('dashboard.authorities.show', $rootAuthority->id) }}" class="cell row">
+                <div>{{ $rootAuthority->common_name }}</div>
+                <div>{{ $rootAuthority->organization }}</div>
+                <div>{{ $rootAuthority->organization_unit }}</div>
+                <div>{{ $rootAuthority->country_name }}</div>
+                <div>{{ $rootAuthority->state_or_province_name }}</div>
+                <div>{{ $rootAuthority->locality_name }}</div>
+                <div>{{ $rootAuthority->expires_on }}</div>
             </a>
         @endforeach
     </div>

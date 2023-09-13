@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\CertificateTypeEnum;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +11,7 @@ class Certificate extends Model
 {
     use HasUuids;
     protected $fillable = [
+        'type',
         'common_name',
         'organization',
         'organization_unit',
@@ -28,6 +30,7 @@ class Certificate extends Model
     protected $casts = [
         'expires_on' => 'datetime',
         'issued_on' => 'datetime',
+        'type' => CertificateTypeEnum::class
     ];
 
     public function issuer()
@@ -42,13 +45,12 @@ class Certificate extends Model
 
     public function isAuthority()
     {
-        return Attribute::make($this->certificates()->count() > 0);
+        return ($this->type === CertificateTypeEnum::CA) || ($this->type === CertificateTypeEnum::SUB_CA);
     }
 
-    public function isSelfSigned()
+    public function isRootAuthority()
     {
-        return Attribute::make($this->issuer === $this);
+        return $this->type === CertificateTypeEnum::CA;
     }
-
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Enums\CertificateTypeEnum;
 use App\Models\Certificate;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
@@ -38,9 +39,18 @@ class CertificateRepository
         return $this->certificate->where('issuer', '=', $id)->whereColumn('issuer','!=', 'id')->get();
     }
 
-    public function allSelfSigned()
+    public function allAuthorities()
     {
-        return $this->certificate->whereColumn('issuer', '=', 'id')->get();
+        return $this->certificate->all()->filter(function ($certificate){
+            return $certificate->isAuthority();
+        });
+    }
+
+    public function allRootAuthorities()
+    {
+        return $this->certificate->all()->filter(function ($certificate){
+            return $certificate->isRootAuthority();
+        });
     }
 
     public function update(string $id, array $data)

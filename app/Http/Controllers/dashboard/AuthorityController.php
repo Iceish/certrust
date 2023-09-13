@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\dashboard;
 
+use App\Enums\CertificateTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Certificate;
 use App\Repositories\CertificateRepository;
@@ -16,8 +17,8 @@ class AuthorityController extends Controller
     ){}
     public function index()
     {
-        $authorities = $this->certificateRepository->allSelfSigned();
-        return view('web.dashboard.sections.authorities.index', compact('authorities'));
+        $rootAuthorities = $this->certificateRepository->allRootAuthorities();
+        return view('web.dashboard.sections.authorities.index', compact('rootAuthorities'));
     }
 
     public function show(Certificate $authority)
@@ -42,6 +43,7 @@ class AuthorityController extends Controller
         $data = $request->validated();
         $authority = $this->opensslService->generateSelfSignedCertificate($data);
         $certificate = [
+            "type" => CertificateTypeEnum::CA,
             "common_name" => $data['common_name'],
             "organization" => $data['organization'],
             "organization_unit" => $data['organization_unit'],
