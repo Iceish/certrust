@@ -1,6 +1,6 @@
 <div class="hero">
     <div class="breadcrumb">
-        <p>Dashboard/Authorities</p>
+        @yield('breadcrumb')
     </div>
 
     <div class="theme-switch">

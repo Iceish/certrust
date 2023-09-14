@@ -1,5 +1,9 @@
 @extends('web.dashboard.layout')
 
+@section('breadcrumb')
+    {{ Breadcrumbs::render('authorities.show', $authority) }}
+@endsection
+
 @section('main')
     <h2 id="section-title"><i class="fa-solid fa-lock"></i> {{ $authority->common_name }}'s certificates</h2>
     <br>

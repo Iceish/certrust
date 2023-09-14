@@ -1,0 +1,18 @@
+.breadcrumb{
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    flex-wrap: wrap;
+    &__separator{
+        color: var(--clr-text-muted);
+        font-size: 0.8rem;
+        display: inline-flex;
+        align-items: center;
+    }
+    &__item{
+        color: var(--clr-text-muted);
+        &.active{
+            color: var(--clr-secondary);
+        }
+    }
+}

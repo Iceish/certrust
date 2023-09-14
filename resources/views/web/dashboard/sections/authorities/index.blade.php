@@ -1,7 +1,10 @@
 @extends('web.dashboard.layout')
 
-@section('main')
+@section('breadcrumb')
+    {{ Breadcrumbs::render('authorities.index') }}
+@endsection
 
+@section('main')
     <x-dashboard.container>
 
         <x-slot:header>

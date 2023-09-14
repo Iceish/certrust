@@ -1,9 +1,9 @@
 @extends('web.dashboard.layout')
 
 @section('breadcrumb')
-    {{ Breadcrumbs::render('dashboard') }}
+    {{ Breadcrumbs::render('management.index') }}
 @endsection
 
 @section('main')
-    <p>Home content.</p>
+    <p>Management content.</p>
 @endsection

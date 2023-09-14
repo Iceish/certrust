@@ -9,7 +9,7 @@
                 <a class="nav__link @if(Route::is('dashboard.authorities.*')) nav__link--active @endif" href="{{ route('dashboard.authorities.index') }}"><i class="fa-solid fa-lock"></i><span class="nav__link--text"> Authorities</span></a>
             </li>
             <li>
-                <a class="nav__link" href="#"><i class="fa-solid fa-user"></i><span class="nav__link--text"> Management</span></a>
+                <a class="nav__link @if(Route::is('dashboard.management.*')) nav__link--active @endif" href="{{ route('dashboard.management.index') }}"><i class="fa-solid fa-user"></i><span class="nav__link--text"> Management</span></a>
             </li>
             <li>
                 <a class="nav__link @if(Route::is('dashboard.settings.*')) nav__link--active @endif" href="{{ route('dashboard.settings.index') }}"><i class="fa-solid fa-gear"></i><span class="nav__link--text"> Settings</span></a>

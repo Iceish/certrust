@@ -1,5 +1,9 @@
 @extends('web.dashboard.layout')
 
+@section('breadcrumb')
+    {{ Breadcrumbs::render('authorities.create') }}
+@endsection
+
 @section('main')
     <h2 id="section-title"><i class="fa-solid fa-lock"></i> New authority</h2>
     <br>
