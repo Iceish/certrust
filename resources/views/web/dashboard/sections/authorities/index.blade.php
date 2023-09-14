@@ -15,17 +15,17 @@
             <a href="{{ route('dashboard.authorities.create', ['type'=>'0']) }}" class="btn">
                 New Authority
             </a>
+
             <div class="table">
                 <div class="cell header">
-                    <div>common_name</div>
+                    <div>common name</div>
                     <div>organization</div>
-                    <div>organization_unit</div>
-                    <div>country_name</div>
-                    <div>state_or_province_name</div>
-                    <div>locality_name</div>
-                    <div>expires_on</div>
+                    <div>organization unit</div>
+                    <div>country name</div>
+                    <div>state or province name</div>
+                    <div>locality name</div>
+                    <div>expires on</div>
                 </div>
-                <div class="separator"></div>
                 @foreach($rootAuthorities as $rootAuthority)
                     <a href="{{ route('dashboard.authorities.show', $rootAuthority->id) }}" class="cell row">
                         <div>{{ $rootAuthority->common_name }}</div>
@@ -34,7 +34,7 @@
                         <div>{{ $rootAuthority->country_name }}</div>
                         <div>{{ $rootAuthority->state_or_province_name }}</div>
                         <div>{{ $rootAuthority->locality_name }}</div>
-                        <div>{{ $rootAuthority->expires_on }}</div>
+                        <div>{{ $rootAuthority->expires_on->format('d M, Y') }} <span class="muted">({{ date_diff($rootAuthority->expires_on, new DateTime())->days }} days left)</span></div>
                     </a>
                 @endforeach
             </div>
