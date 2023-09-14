@@ -4,14 +4,16 @@
     --clr-background: #f0f2f5;
     --clr-background-accent: #fff;
     --clr-primary: #f5853f;
+    --clr-text-on-primary: var(--clr-background-accent);
     --clr-secondary: #3faff5;
 }
 
 [data-theme="dark"], .force-dark-theme{
-    --clr-text: #f0f2f5;
-    --clr-text-muted: #272838;
+    --clr-text: #fff;
+    --clr-text-muted: #f0f2f5;
     --clr-background: #272838;
     --clr-background-accent: #131420;
     --clr-primary: #f5853f;
+    --clr-text-on-primary: var(--clr-text);
     --clr-secondary: #3faff5;
 }
