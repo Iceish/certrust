@@ -62,4 +62,16 @@ class AuthorityController extends Controller
         return redirect()->route('dashboard.authorities.index');
     }
 
+    public function download(Certificate $authority, string $field)
+    {
+        $extension = match ($field) {
+            "public_key" => "crt",
+            "private_key" => "key",
+        };
+        return response($authority->$field, 200, [
+            'Content-Type' => 'application/octet-stream',
+            'Content-Disposition' => "attachment; filename=$authority->common_name.$extension",
+        ]);
+    }
+
 }
