@@ -6,40 +6,48 @@
 
 @section('main')
     <x-dashboard.container>
-
         <x-slot:header>
             <h2><i class="fa-solid fa-lock"></i> Authorities</h2>
         </x-slot:header>
-
         <x-slot:body>
             <a href="{{ route('dashboard.authorities.create', ['type'=>'0']) }}" class="btn">
                 New Authority
             </a>
-
-            <div class="table">
-                <div class="cell header">
-                    <div>common name</div>
-                    <div>organization</div>
-                    <div>organization unit</div>
-                    <div>country name</div>
-                    <div>state or province name</div>
-                    <div>locality name</div>
-                    <div>expires on</div>
-                </div>
-                @foreach($rootAuthorities as $rootAuthority)
-                    <a href="{{ route('dashboard.authorities.show', $rootAuthority->id) }}" class="cell row">
-                        <div>{{ $rootAuthority->common_name }}</div>
-                        <div>{{ $rootAuthority->organization }}</div>
-                        <div>{{ $rootAuthority->organization_unit }}</div>
-                        <div>{{ $rootAuthority->country_name }}</div>
-                        <div>{{ $rootAuthority->state_or_province_name }}</div>
-                        <div>{{ $rootAuthority->locality_name }}</div>
-                        <div>{{ $rootAuthority->expires_on->format('d M, Y') }} <span class="muted">({{ date_diff($rootAuthority->expires_on, new DateTime())->days }} days left)</span></div>
-                    </a>
-                @endforeach
-            </div>
         </x-slot:body>
-
     </x-dashboard.container>
+
+    <div class="grid-card">
+        @foreach($rootAuthorities as $rootAuthority)
+            <x-dashboard.container>
+
+                <x-slot:body class="card">
+                    <div class="card__header">
+                        <div>
+                            <p class="card__title">{{ $rootAuthority->common_name }}</p>
+                            <p class="card__sub-title muted">{{ $rootAuthority->organization }}, {{ $rootAuthority->organization_unit }}, {{ $rootAuthority->country_name }}, {{ $rootAuthority->state_or_province_name }}, {{ $rootAuthority->locality_name }}.</p>
+                        </div>
+                        <div>
+                            <div class="card__actions">
+                                <a href="{{ route('dashboard.authorities.show', ['authority'=>$rootAuthority->id]) }}" class="link"><i class="fa-solid fa-xl fa-magnifying-glass"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card__body">
+                        <div class="card__numeric-info"><p>{{ $rootAuthority->countCertificatesByType()['sub_ca'] }}</p><p>Sub-CA</p></div>
+                        <div class="card__numeric-info"><p>{{ $rootAuthority->countCertificatesByType()['cert'] }}</p><p>Certificates</p></div>
+                    </div>
+                    <hr>
+                    <div class="card__footer">
+                        <div class="card__status {{ $rootAuthority->hasExpired() ? 'card__status--danger' : ($rootAuthority->expireSoon() ? 'card__status--warning' : '')}}"></div>
+                        <p> {{ $rootAuthority->hasExpired() ? 'Expired on' : 'Expire on' }} {{ $rootAuthority->expires_on->format('d M, Y') }} <span class="muted">({{ date_diff($rootAuthority->expires_on, new DateTime())->days }} {{ $rootAuthority->hasExpired() ? 'days ago' : 'days left' }})</span></p>
+                    </div>
+
+                </x-slot:body>
+
+            </x-dashboard.container>
+        @endforeach
+    </div>
+
+
 
 @endsection

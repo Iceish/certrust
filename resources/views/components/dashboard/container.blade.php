@@ -1,12 +1,17 @@
-<div class="container">
+@props([
+    'header',
+    'body',
+])
+
+<div {{ $attributes->merge(['class' => 'container']) }}>
     @if(!empty($header))
-        <div class="container__header">
+        <div {{ $header->attributes->merge(['class' => 'container__header']) }}>
             {{ $header }}
         </div>
     @endif
 
 
-    <div class="container__body">
+    <div {{ $body->attributes->merge(['class' => 'container__body']) }}>
         {{ $body }}
     </div>
 </div>

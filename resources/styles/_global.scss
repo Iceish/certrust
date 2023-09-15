@@ -4,9 +4,20 @@ body{
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
 }
+
 [data-theme="dark"] .remove-on-dark{
     display: none;
 }
 [data-theme="light"] .remove-on-light{
     display: none;
+}
+
+span,a,p,i{
+    &.muted{
+        color: var(--clr-text-muted);
+        font-weight: var(--weight-font-normal);
+    }
+    &.link{
+        color: var(--clr-text-secondary);
+    }
 }

@@ -18,12 +18,14 @@ main{
     overflow-y: hidden;
 
     #wrapper{
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
         height: 100%;
-        //backdrop-filter: blur(250px);
-        //background-color: rgba(0,0,0,0.1);
         border-radius: 15px;
         padding: 12px;
         overflow-y: auto;
+
     }
 
     .hero{

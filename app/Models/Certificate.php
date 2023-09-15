@@ -43,6 +43,14 @@ class Certificate extends Model
         return $this->hasMany(Certificate::class, 'issuer');
     }
 
+    public function countCertificatesByType(){
+        $certificates = $this->certificates();
+        return [
+            'sub_ca' => $certificates->where('type', CertificateTypeEnum::SUB_CA)->count(),
+            'cert' => $certificates->where('type', CertificateTypeEnum::CERT)->count()
+        ];
+    }
+
     public function isAuthority()
     {
         return ($this->type === CertificateTypeEnum::CA) || ($this->type === CertificateTypeEnum::SUB_CA);
@@ -51,6 +59,15 @@ class Certificate extends Model
     public function isRootAuthority()
     {
         return $this->type === CertificateTypeEnum::CA;
+    }
+
+    public function hasExpired()
+    {
+        return $this->expires_on->isPast();
+    }
+    public function expireSoon()
+    {
+        return $this->expires_on->diffInDays(now()) < 30 && !$this->hasExpired();
     }
 
 }
