@@ -5,13 +5,9 @@
     }
 
     .authority-show__nav{
-        //display: grid;
-        //grid-template-columns: 1fr auto auto;
-        //grid-gap: var(--size-spacing-m);
-
         display: flex;
         flex-direction: row;
-        gap: var(--size-spacing-m);
+        gap: var(--size-spacing-2xl);
     }
 
     .action-panel{
