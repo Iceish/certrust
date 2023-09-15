@@ -42,7 +42,7 @@
                     </div>
                     <hr>
                     <div class="card__footer">
-                        <div class="card__status {{ $rootAuthority->hasExpired() ? 'card__status--danger' : ($rootAuthority->expireSoon() ? 'card__status--warning' : '')}}"></div>
+                        <div class="status {{ $rootAuthority->hasExpired() ? 'status--danger' : ($rootAuthority->expireSoon() ? 'status--warning' : '')}}"></div>
                         <p> {{ $rootAuthority->hasExpired() ? 'Expired on' : 'Expire on' }} {{ $rootAuthority->expires_on->format('d M, Y') }} <span class="muted">({{ date_diff($rootAuthority->expires_on, new DateTime())->days }} {{ $rootAuthority->hasExpired() ? 'days ago' : 'days left' }})</span></p>
                     </div>
 

@@ -53,21 +53,6 @@
     &__actions{
         color: var(--clr-primary);
     }
-
-    &__status{
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-
-        background-color: var(--clr-success);
-
-        &--warning{
-            background-color: var(--clr-warning);
-        }
-        &--danger{
-            background-color: var(--clr-danger);
-        }
-    }
 }
 
 .grid-card{
