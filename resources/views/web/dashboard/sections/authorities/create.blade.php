@@ -1,7 +1,7 @@
 @extends('web.dashboard.layout')
 
 @section('breadcrumb')
-    {{ Breadcrumbs::render('authorities.create') }}
+    {{ Breadcrumbs::render('certificates.create') }}
 @endsection
 
 @section('tag', 'authorities')
@@ -23,7 +23,7 @@
             <h2><i class="fa-solid fa-lock"></i> New authority</h2>
         </x-slot:header>
         <x-slot:body>
-            <form class="form" action="{{ route('dashboard.authorities.store') }}" method="POST">
+            <form class="form" action="{{ route('dashboard.certificates.store') }}" method="POST">
                 @csrf
                 <input type="hidden" name="type" value="{{ Request::get('type') }}">
                 @if(!empty(Request::get('issuer')))

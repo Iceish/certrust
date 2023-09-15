@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\dashboard\AuthorityController;
+use App\Http\Controllers\dashboard\CertificateController;
 use App\Http\Controllers\dashboard\HomeController;
 use App\Http\Controllers\dashboard\ManagementController;
 use App\Http\Controllers\dashboard\SettingsController;
@@ -23,7 +23,7 @@ Route::prefix('/dashboard')->name('dashboard.')->group(function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
-    Route::controller(AuthorityController::class)->name('authorities.')->prefix('authorities')->group(function () {
+    Route::controller(CertificateController::class)->name('certificates.')->prefix('certificates')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/{authority}/delete', 'destroy')->name('destroy');
         Route::get('/create', 'create')->name('create');

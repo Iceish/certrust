@@ -6,15 +6,16 @@ use App\Enums\CertificateTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Certificate;
 use App\Repositories\CertificateRepository;
-use App\Requests\Authority\CreateAuthorityRequest;
+use App\Requests\Certificate\CreateCertificateRequest;
 use App\Services\OpensslService;
 
-class AuthorityController extends Controller
+class CertificateController extends Controller
 {
     public function __construct(
         private readonly OpensslService $opensslService,
         private readonly CertificateRepository $certificateRepository
     ){}
+
     public function index()
     {
         $rootAuthorities = $this->certificateRepository->allRootAuthorities();
@@ -38,7 +39,7 @@ class AuthorityController extends Controller
         return redirect()->route('dashboard.authorities.index');
     }
 
-    public function store(CreateAuthorityRequest $request)
+    public function store(CreateCertificateRequest $request)
     {
         $data = $request->validated();
         $authority = $this->opensslService->generateSelfSignedCertificate($data);

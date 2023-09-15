@@ -1,7 +1,7 @@
 @extends('web.dashboard.layout')
 
 @section('breadcrumb')
-    {{ Breadcrumbs::render('authorities.index') }}
+    {{ Breadcrumbs::render('certificates.index') }}
 @endsection
 
 @section('tag', 'authorities')
@@ -16,7 +16,7 @@
         </x-slot:body>
     </x-dashboard.container>
 
-    <a href="{{ route('dashboard.authorities.create', ['type'=>'0']) }}" class="btn btn--primary create_authority_btn">
+    <a href="{{ route('dashboard.certificates.create', ['type'=>'0']) }}" class="btn btn--primary create_authority_btn">
         <i class="fa-regular fa-square-plus"></i> <p>New CA-Root</p>
     </a>
 
@@ -32,7 +32,7 @@
                         </div>
                         <div>
                             <div class="card__actions">
-                                <a href="{{ route('dashboard.authorities.show', ['authority'=>$rootAuthority->id]) }}"><i class="fa-solid fa-xl fa-magnifying-glass"></i></a>
+                                <a href="{{ route('dashboard.certificates.show', ['authority'=>$rootAuthority->id]) }}"><i class="fa-solid fa-xl fa-magnifying-glass"></i></a>
                             </div>
                         </div>
                     </div>

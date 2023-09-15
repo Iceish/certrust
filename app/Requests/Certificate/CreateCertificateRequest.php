@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Requests\Authority;
+namespace App\Requests\Certificate;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateAuthorityRequest extends FormRequest
+class CreateCertificateRequest extends FormRequest
 {
     public function rules(): array
     {

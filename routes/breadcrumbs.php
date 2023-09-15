@@ -19,25 +19,25 @@ Breadcrumbs::for('dashboard', function (BreadcrumbTrail $trail) {
 });
 
 //============
-// AUTHORITIES
+// Certificate
 //============
 
-// Authorities
-Breadcrumbs::for('authorities.index', function (BreadcrumbTrail $trail) {
+// Certificates
+Breadcrumbs::for('certificates.index', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
-    $trail->push('Authorities', route('dashboard.authorities.index'));
+    $trail->push('Certificates', route('dashboard.certificates.index'));
 });
 
-// Authorities > create
-Breadcrumbs::for('authorities.create', function (BreadcrumbTrail $trail) {
-    $trail->parent('authorities.index');
-    $trail->push('Create', route('dashboard.authorities.create'));
+// Certificates > create
+Breadcrumbs::for('certificates.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('certificates.index');
+    $trail->push('Create', route('dashboard.certificates.create'));
 });
 
-// Authorities > [Photo Name]
-Breadcrumbs::for('authorities.show', function (BreadcrumbTrail $trail, Certificate $authority) {
-    $trail->parent('authorities.index');
-    $trail->push($authority->common_name, route('dashboard.authorities.show', $authority));
+// Certificates > [Photo Name]
+Breadcrumbs::for('certificates.show', function (BreadcrumbTrail $trail, Certificate $authority) {
+    $trail->parent('certificates.index');
+    $trail->push($authority->common_name, route('dashboard.certificates.show', $authority));
 });
 
 //============
