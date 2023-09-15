@@ -18,6 +18,17 @@ span,a,p,i{
         font-weight: var(--weight-font-normal);
     }
     &.link{
-        color: var(--clr-text-secondary);
+        color: var(--clr-secondary);
     }
+    &.danger{
+        color: var(--clr-danger);
+    }
+}
+
+.vertical-separator{
+    margin: auto 0;
+    height: 90%;
+    width: 1px;
+    background-color: var(--clr-text-muted);
+    opacity: 0.2;
 }

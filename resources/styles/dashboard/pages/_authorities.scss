@@ -3,4 +3,28 @@
         align-self: end;
         box-shadow: var(--shadow-background);
     }
+
+    .authority-show__nav{
+        //display: grid;
+        //grid-template-columns: 1fr auto auto;
+        //grid-gap: var(--size-spacing-m);
+
+        display: flex;
+        flex-direction: row;
+        gap: var(--size-spacing-m);
+    }
+
+    .action-panel{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        justify-self: flex-end;
+
+        gap: var(--size-spacing-s);
+        a{
+            display: grid;
+            grid-template-columns: 20px 1fr;
+        }
+    }
 }

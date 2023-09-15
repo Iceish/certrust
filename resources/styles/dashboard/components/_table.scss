@@ -23,10 +23,6 @@
         border-top: 1px solid rgba(0,0,0,0.1);
         font-size: 0.85rem;
 
-        .link{
-            color: var(--clr-secondary);
-        }
-
         &:nth-child(n+2) div:nth-child(1){
             font-weight: 600;
         }
