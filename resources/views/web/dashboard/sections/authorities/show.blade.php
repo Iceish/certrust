@@ -4,6 +4,8 @@
     {{ Breadcrumbs::render('authorities.show', $authority) }}
 @endsection
 
+@section('tag', 'authorities')
+
 @section('main')
 
     <x-dashboard.container>

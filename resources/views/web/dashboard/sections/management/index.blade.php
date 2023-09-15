@@ -1,5 +1,7 @@
 @extends('web.dashboard.layout')
 
+@section('tag', 'management')
+
 @section('breadcrumb')
     {{ Breadcrumbs::render('management.index') }}
 @endsection

@@ -4,6 +4,8 @@
     {{ Breadcrumbs::render('authorities.create') }}
 @endsection
 
+@section('tag', 'authorities')
+
 @section('main')
     @if($errors->any())
         <div class="alert error">

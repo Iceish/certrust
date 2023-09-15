@@ -2,7 +2,7 @@
 
 @section('body')
     @include('web.dashboard.partials.header')
-    <main>
+    <main id="@yield('tag', 'undefined')">
         <div class="flare" style="right: -500px;top: 200px;">
             <img src="/images/primary-flare.png" alt="flare">
         </div>

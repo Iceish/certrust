@@ -1,8 +1,15 @@
 .btn{
-    display: inline-block;
+    display: inline-flex;
+    gap: var(--size-spacing-s);
     border: 1px solid rgba(0,0,0,0.1);
-    background-color: var(--clr-primary);
+    &--primary{
+        background-color: var(--clr-primary);
+    }
+    &--secondary{
+        background-color: var(--clr-secondary);
+    }
     border-radius: 5px;
     padding: var(--size-spacing-s);
     cursor: pointer;
+    color: var(--clr-text-on-primary);
 }

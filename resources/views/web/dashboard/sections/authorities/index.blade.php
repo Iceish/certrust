@@ -4,17 +4,21 @@
     {{ Breadcrumbs::render('authorities.index') }}
 @endsection
 
+@section('tag', 'authorities')
+
 @section('main')
     <x-dashboard.container>
         <x-slot:header>
-            <h2><i class="fa-solid fa-lock"></i> Authorities</h2>
+            <i class="fa-solid fa-lock"></i> <p>Authorities</p>
         </x-slot:header>
         <x-slot:body>
-            <a href="{{ route('dashboard.authorities.create', ['type'=>'0']) }}" class="btn">
-                New Authority
-            </a>
+            <p class="muted"><i class="fa-solid fa-circle-info"></i> A CA root, or Certificate Authority root, is the foundational entity in a public key infrastructure that issues and verifies digital certificates. </p>
         </x-slot:body>
     </x-dashboard.container>
+
+    <a href="{{ route('dashboard.authorities.create', ['type'=>'0']) }}" class="btn btn--primary create_authority_btn">
+        <i class="fa-regular fa-square-plus"></i> <p>New CA-Root</p>
+    </a>
 
     <div class="grid-card">
         @foreach($rootAuthorities as $rootAuthority)

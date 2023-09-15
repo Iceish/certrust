@@ -21,6 +21,12 @@
         color: var(--clr-text-on-primary);
         font-weight: 700;
 
+        h2{
+            display: inline-flex;
+            flex-direction: row;
+            gap: var(--size-spacing-s);
+        }
+
         // This trick is here for allowing use of the container without a header.
         & + .container__body{
             margin-top: $header-height / 2;

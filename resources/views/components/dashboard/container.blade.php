@@ -6,7 +6,7 @@
 <div {{ $attributes->merge(['class' => 'container']) }}>
     @if(!empty($header))
         <div {{ $header->attributes->merge(['class' => 'container__header']) }}>
-            {{ $header }}
+            <h2>{{ $header }}</h2>
         </div>
     @endif
 
