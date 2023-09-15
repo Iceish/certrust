@@ -4,7 +4,7 @@
     {{ Breadcrumbs::render('certificates.create') }}
 @endsection
 
-@section('tag', 'authorities')
+@section('tag', 'certificates')
 
 @section('main')
     @if($errors->any())

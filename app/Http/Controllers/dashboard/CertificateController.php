@@ -19,24 +19,24 @@ class CertificateController extends Controller
     public function index()
     {
         $rootAuthorities = $this->certificateRepository->allRootAuthorities();
-        return view('web.dashboard.sections.authorities.index', compact('rootAuthorities'));
+        return view('web.dashboard.sections.certificates.index', compact('rootAuthorities'));
     }
 
     public function show(Certificate $certificate)
     {
         $issuedCertificates = $this->certificateRepository->allIssuedBy($certificate->id);
-        return view('web.dashboard.sections.authorities.show', compact('issuedCertificates', 'certificate'));
+        return view('web.dashboard.sections.certificates.show', compact('issuedCertificates', 'certificate'));
     }
 
     public function create()
     {
-        return view('web.dashboard.sections.authorities.create');
+        return view('web.dashboard.sections.certificates.create');
     }
 
     public function destroy(Certificate $certificate)
     {
         $this->certificateRepository->delete($certificate->id);
-        return redirect()->route('dashboard.authorities.index');
+        return redirect()->route('dashboard.certificates.index');
     }
 
     public function store(CreateCertificateRequest $request)
@@ -60,7 +60,7 @@ class CertificateController extends Controller
             "sha1_fingerprint" => $authority['fingerprints']['sha1'],
         ];
         $this->certificateRepository->create($certificate);
-        return redirect()->route('dashboard.authorities.index');
+        return redirect()->route('dashboard.certificates.index');
     }
 
     public function download(Certificate $certificate, string $field)

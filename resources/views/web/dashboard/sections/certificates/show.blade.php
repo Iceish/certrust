@@ -4,7 +4,7 @@
     {{ Breadcrumbs::render('certificates.show', $certificate) }}
 @endsection
 
-@section('tag', 'authorities')
+@section('tag', 'certificates')
 
 @section('main')
     <x-dashboard.container>
