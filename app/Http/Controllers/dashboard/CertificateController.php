@@ -22,9 +22,10 @@ class CertificateController extends Controller
         return view('web.dashboard.sections.authorities.index', compact('rootAuthorities'));
     }
 
-    public function show(Certificate $authority)
+    public function show(Certificate $certificate)
     {
-        $certificates = $this->certificateRepository->allIssuedBy($authority->id);
+        $authority = $certificate;
+        $certificates = $this->certificateRepository->allIssuedBy($certificate->id);
         return view('web.dashboard.sections.authorities.show', compact('certificates', 'authority'));
     }
 
@@ -33,9 +34,9 @@ class CertificateController extends Controller
         return view('web.dashboard.sections.authorities.create');
     }
 
-    public function destroy(Certificate $authority)
+    public function destroy(Certificate $certificate)
     {
-        $this->certificateRepository->delete($authority->id);
+        $this->certificateRepository->delete($certificate->id);
         return redirect()->route('dashboard.authorities.index');
     }
 
@@ -63,15 +64,15 @@ class CertificateController extends Controller
         return redirect()->route('dashboard.authorities.index');
     }
 
-    public function download(Certificate $authority, string $field)
+    public function download(Certificate $certificate, string $field)
     {
         $extension = match ($field) {
             "public_key" => "crt",
             "private_key" => "key",
         };
-        return response($authority->$field, 200, [
+        return response($certificate->$field, 200, [
             'Content-Type' => 'application/octet-stream',
-            'Content-Disposition' => "attachment; filename=$authority->common_name.$extension",
+            'Content-Disposition' => "attachment; filename=$certificate->common_name.$extension",
         ]);
     }
 

@@ -42,8 +42,8 @@
             </div>
             <div class="vertical-separator"></div>
             <div class="action-panel">
-                <a href="{{ route('dashboard.certificates.download', ['field'=> 'public_key', 'authority' => $authority]) }}" class="muted"><i class="fa-solid fa-file-lines"></i><p>Download CRT</p></a>
-                <a href="{{ route('dashboard.certificates.download', ['field'=> 'private_key', 'authority' => $authority]) }}" class="muted"><i class="fa-solid fa-key"></i><p>Download private key</p></a>
+                <a href="{{ route('dashboard.certificates.download', ['field'=> 'public_key', 'certificate' => $authority]) }}" class="muted"><i class="fa-solid fa-file-lines"></i><p>Download CRT</p></a>
+                <a href="{{ route('dashboard.certificates.download', ['field'=> 'private_key', 'certificate' => $authority]) }}" class="muted"><i class="fa-solid fa-key"></i><p>Download private key</p></a>
                 <a href="{{ route('dashboard.certificates.destroy', $authority->id) }}" class="danger"><i class="fa-solid fa-trash"></i><p>Delete</p></a>
             </div>
 
@@ -77,7 +77,7 @@
                             <div>{{ $certificate->country_name }}</div>
                             <div>{{ $certificate->state_or_province_name }}</div>
                             <div><span class="status {{ $certificate->hasExpired() ? 'status--danger' : ($certificate->expireSoon() ? 'status--warning' : '')}}"></span> {{ $certificate->expires_on->format('d M, Y') }} <span class="muted">({{ date_diff($certificate->expires_on, new DateTime())->days }} days left)</span></div>
-                            <div class="row__actions"><a href="{{ route('dashboard.certificates.show', ['authority' => $certificate]) }}"><i class="fa-solid fa-xl fa-magnifying-glass"></i></a><a class="btn btn--primary" href="{{ route('dashboard.certificates.create', ['type' => 2, 'issuer' => $certificate->id]) }}">New cert</a></div>
+                            <div class="row__actions"><a href="{{ route('dashboard.certificates.show', ['certificate' => $certificate]) }}"><i class="fa-solid fa-xl fa-magnifying-glass"></i></a><a class="btn btn--primary" href="{{ route('dashboard.certificates.create', ['type' => 2, 'issuer' => $certificate->id]) }}">New cert</a></div>
                         </div>
                     @endforeach
                 </div>
@@ -108,7 +108,7 @@
                             <div>{{ $certificate->country_name }}</div>
                             <div>{{ $certificate->state_or_province_name }}</div>
                             <div><span class="status {{ $certificate->hasExpired() ? 'status--danger' : ($certificate->expireSoon() ? 'status--warning' : '')}}"></span> {{ $certificate->expires_on->format('d M, Y') }} <span class="muted">({{ date_diff($certificate->expires_on, new DateTime())->days }} days left)</span></div>
-                            <div class="row__actions"><a href="{{ route('dashboard.certificates.show', ['authority' => $certificate]) }}"><i class="fa-solid fa-xl fa-magnifying-glass"></i></a><a class="btn btn--primary" href="{{ route('dashboard.certificates.create', ['type' => 2, 'issuer' => $certificate->id]) }}">New cert</a></div>
+                            <div class="row__actions"><a href="{{ route('dashboard.certificates.show', ['certificate' => $certificate]) }}"><i class="fa-solid fa-xl fa-magnifying-glass"></i></a><a class="btn btn--primary" href="{{ route('dashboard.certificates.create', ['type' => 2, 'issuer' => $certificate->id]) }}">New cert</a></div>
                         </div>
                     @endforeach
                 </div>

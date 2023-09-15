@@ -25,11 +25,11 @@ Route::prefix('/dashboard')->name('dashboard.')->group(function () {
 
     Route::controller(CertificateController::class)->name('certificates.')->prefix('certificates')->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('/{authority}/delete', 'destroy')->name('destroy');
+        Route::get('/{certificate}/delete', 'destroy')->name('destroy');
         Route::get('/create', 'create')->name('create');
         Route::post('/create', 'store')->name('store');
-        Route::get('/{authority}', 'show')->name('show');
-        Route::get('/{authority}/download/{field}', 'download')->name('download')->where('field', 'public_key|private_key');
+        Route::get('/{certificate}', 'show')->name('show');
+        Route::get('/{certificate}/download/{field}', 'download')->name('download')->where('field', 'public_key|private_key');
     });
 
     Route::controller(ManagementController::class)->name('management.')->prefix('management')->group(function () {

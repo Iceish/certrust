@@ -32,7 +32,7 @@
                         </div>
                         <div>
                             <div class="card__actions">
-                                <a href="{{ route('dashboard.certificates.show', ['authority'=>$rootAuthority->id]) }}"><i class="fa-solid fa-xl fa-magnifying-glass"></i></a>
+                                <a href="{{ route('dashboard.certificates.show', ['certificate'=>$rootAuthority->id]) }}"><i class="fa-solid fa-xl fa-magnifying-glass"></i></a>
                             </div>
                         </div>
                     </div>
