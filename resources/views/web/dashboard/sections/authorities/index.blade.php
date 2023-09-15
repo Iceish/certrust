@@ -8,7 +8,7 @@
 
 @section('main')
     <x-dashboard.container>
-        <x-slot:header>
+        <x-slot:header class="container__header--primary">
             <i class="fa-solid fa-lock"></i> <p>Authorities</p>
         </x-slot:header>
         <x-slot:body>
