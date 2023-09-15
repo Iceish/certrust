@@ -50,6 +50,10 @@
         }
     }
 
+    &__actions{
+        color: var(--clr-primary);
+    }
+
     &__status{
         width: 10px;
         height: 10px;

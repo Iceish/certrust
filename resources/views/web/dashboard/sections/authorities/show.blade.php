@@ -7,7 +7,6 @@
 @section('tag', 'authorities')
 
 @section('main')
-
     <x-dashboard.container>
         <x-slot:header>
             <h2><i class="fa-solid fa-lock"></i> {{ $authority->common_name }}</h2>

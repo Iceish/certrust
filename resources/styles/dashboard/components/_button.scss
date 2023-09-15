@@ -1,15 +1,22 @@
 .btn{
     display: inline-flex;
     gap: var(--size-spacing-s);
-    border: 1px solid rgba(0,0,0,0.1);
+
+
     &--primary{
-        background-color: var(--clr-primary);
+        border: 3px solid var(--clr-primary);
+        color: var(--clr-primary);
+
     }
+
     &--secondary{
-        background-color: var(--clr-secondary);
+        border: 3px solid var(--clr-secondary);
+        color: var(--clr-secondary);
     }
+
+
     border-radius: 5px;
     padding: var(--size-spacing-s);
     cursor: pointer;
-    color: var(--clr-text-on-primary);
+    font-weight: var(--weight-font-bold);
 }
