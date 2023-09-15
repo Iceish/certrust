@@ -29,7 +29,7 @@ Route::prefix('/dashboard')->name('dashboard.')->group(function () {
         Route::get('/create', 'create')->name('create');
         Route::post('/create', 'store')->name('store');
         Route::get('/{authority}', 'show')->name('show');
-        Route::get('/{authority}/download/{type}', 'download')->name('download')->where('type', 'public_key|private_key');
+        Route::get('/{authority}/download/{field}', 'download')->name('download')->where('field', 'public_key|private_key');
     });
 
     Route::controller(ManagementController::class)->name('management.')->prefix('management')->group(function () {

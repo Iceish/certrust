@@ -27,18 +27,6 @@ class AuthorityController extends Controller
         return view('web.dashboard.sections.authorities.show', compact('certificates', 'authority'));
     }
 
-    public function download(Certificate $authority, string $type)
-    {
-        $extension = match ($type) {
-            "public_key" => "crt",
-            "private_key" => "key",
-        };
-        return response($authority->$type, 200, [
-            'Content-Type' => 'application/octet-stream',
-            'Content-Disposition' => "attachment; filename=$authority->common_name.$extension",
-        ]);
-    }
-
     public function create()
     {
         return view('web.dashboard.sections.authorities.create');
@@ -72,6 +60,18 @@ class AuthorityController extends Controller
         ];
         $this->certificateRepository->create($certificate);
         return redirect()->route('dashboard.authorities.index');
+    }
+
+    public function download(Certificate $authority, string $field)
+    {
+        $extension = match ($field) {
+            "public_key" => "crt",
+            "private_key" => "key",
+        };
+        return response($authority->$field, 200, [
+            'Content-Type' => 'application/octet-stream',
+            'Content-Disposition' => "attachment; filename=$authority->common_name.$extension",
+        ]);
     }
 
 }
