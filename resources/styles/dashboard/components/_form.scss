@@ -3,7 +3,7 @@
 .form{
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: var(--size-spacing-l);
 
     @include media('>medium'){
         grid-template-columns: 1fr 1fr;
@@ -16,13 +16,13 @@
     &__field{
         display: flex;
         flex-direction: column;
-        gap: 3px;
+        gap: var(--size-spacing-xs);
 
         > input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),{
             background-color: var(--secondary);
             border: 0;
             border-radius: 5px;
-            padding: 10px;
+            padding: var(--size-spacing-s);
             color: var(--text);
         }
     }

@@ -1,7 +1,7 @@
 .breadcrumb{
     display: flex;
     flex-direction: row;
-    gap: 4px;
+    gap: var(--size-spacing-xs);
     flex-wrap: wrap;
     &__separator{
         color: var(--clr-text-muted);

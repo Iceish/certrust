@@ -16,8 +16,8 @@
 
         display: grid;
         grid-template-columns: repeat(8, 1fr);
-        gap: 5px;
-        padding: 20px 10px;
+        gap: var(--size-spacing-xs);
+        padding: var(--size-spacing-m) var(--size-spacing-s);
         align-items: center;
 
         border-top: 1px solid rgba(0,0,0,0.1);

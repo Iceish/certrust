@@ -15,7 +15,7 @@
         flex-direction: row;
         justify-content: start;
         align-items: center;
-        padding: 8px 24px;
+        padding: var(--size-spacing-s) var(--size-spacing-l);
         background-color: var(--clr-primary);
         border-radius: 15px;
         color: var(--clr-text-on-primary);
@@ -30,7 +30,7 @@
     &__body{
         width: 100%;
 
-        padding: 16px;
+        padding: var(--size-spacing-m);
         background-color: var(--clr-background-accent);
         border-radius: 15px;
         box-shadow:0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -1px rgba(0,0,0,.06);
