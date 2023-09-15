@@ -15,7 +15,7 @@
         min-height: 40px;
 
         display: grid;
-        grid-template-columns: repeat(8, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         gap: var(--size-spacing-xs);
         padding: var(--size-spacing-m) var(--size-spacing-s);
         align-items: center;
@@ -37,8 +37,13 @@
             background-color: rgba(0,0,0,0.02);
         }
 
-        > div{
+        &__actions{
+            display: flex;
+            flex-direction: row;
+            gap: var(--size-spacing-s);
+            align-items: center;
 
+            color: var(--clr-primary);
         }
     }
 }

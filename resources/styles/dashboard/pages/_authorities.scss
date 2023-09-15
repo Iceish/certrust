@@ -1,3 +1,6 @@
+@use '/resources/styles/utils' as *;
+
+
 #authorities{
     .create_authority_btn{
         align-self: start;
@@ -17,9 +20,20 @@
         justify-self: flex-end;
 
         gap: var(--size-spacing-s);
+
         a{
             display: grid;
             grid-template-columns: 20px 1fr;
+        }
+    }
+
+    .authority__issued-certificates{
+        display: flex;
+        flex-direction: column;
+        gap: var(--size-spacing-m);
+
+        @include media('>large'){
+            flex-direction: row;
         }
     }
 }
