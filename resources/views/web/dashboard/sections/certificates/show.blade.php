@@ -70,14 +70,14 @@
                         <div>Expires on</div>
                         <div>Actions</div>
                     </div>
-                    @foreach($issuedCertificates as $issuedCertificate)
+                    @foreach($issuedSubCAs as $issuedSubCA)
                         <div class="cell row">
-                            <div>{{ $issuedCertificate->common_name }}</div>
-                            <div>{{ $issuedCertificate->organization }}</div>
-                            <div>{{ $issuedCertificate->country_name }}</div>
-                            <div>{{ $issuedCertificate->state_or_province_name }}</div>
-                            <div><span class="status {{ $issuedCertificate->hasExpired() ? 'status--danger' : ($issuedCertificate->expireSoon() ? 'status--warning' : '')}}"></span> {{ $issuedCertificate->expires_on->format('d M, Y') }} <span class="muted">({{ date_diff($issuedCertificate->expires_on, new DateTime())->days }} days left)</span></div>
-                            <div class="row__actions"><a href="{{ route('dashboard.certificates.show', ['certificate' => $issuedCertificate]) }}"><i class="fa-solid fa-xl fa-magnifying-glass"></i></a><a class="btn btn--primary" href="{{ route('dashboard.certificates.create', ['type' => 2, 'issuer' => $issuedCertificate->id]) }}">New cert</a></div>
+                            <div>{{ $issuedSubCA->common_name }}</div>
+                            <div>{{ $issuedSubCA->organization }}</div>
+                            <div>{{ $issuedSubCA->country_name }}</div>
+                            <div>{{ $issuedSubCA->state_or_province_name }}</div>
+                            <div><span class="status {{ $issuedSubCA->hasExpired() ? 'status--danger' : ($issuedSubCA->expireSoon() ? 'status--warning' : '')}}"></span> {{ $issuedSubCA->expires_on->format('d M, Y') }} <span class="muted">({{ date_diff($issuedSubCA->expires_on, new DateTime())->days }} days left)</span></div>
+                            <div class="row__actions"><a href="{{ route('dashboard.certificates.show', ['certificate' => $issuedSubCA]) }}"><i class="fa-solid fa-xl fa-magnifying-glass"></i></a></div>
                         </div>
                     @endforeach
                 </div>
@@ -108,7 +108,7 @@
                             <div>{{ $issuedCertificate->country_name }}</div>
                             <div>{{ $issuedCertificate->state_or_province_name }}</div>
                             <div><span class="status {{ $issuedCertificate->hasExpired() ? 'status--danger' : ($issuedCertificate->expireSoon() ? 'status--warning' : '')}}"></span> {{ $issuedCertificate->expires_on->format('d M, Y') }} <span class="muted">({{ date_diff($issuedCertificate->expires_on, new DateTime())->days }} days left)</span></div>
-                            <div class="row__actions"><a href="{{ route('dashboard.certificates.show', ['certificate' => $issuedCertificate]) }}"><i class="fa-solid fa-xl fa-magnifying-glass"></i></a><a class="btn btn--primary" href="{{ route('dashboard.certificates.create', ['type' => 2, 'issuer' => $issuedCertificate->id]) }}">New cert</a></div>
+                            <div class="row__actions"><a href="{{ route('dashboard.certificates.show', ['certificate' => $issuedCertificate]) }}"><i class="fa-solid fa-xl fa-magnifying-glass"></i></a></div>
                         </div>
                     @endforeach
                 </div>

@@ -34,16 +34,18 @@ class CertificateRepository
         return $this->certificate->all();
     }
 
-    public function allIssuedBy(string $id)
+    public function allIssuedBy(string $id, CertificateTypeEnum $type = null)
     {
-        return $this->certificate->where('issuer', '=', $id)->whereColumn('issuer','!=', 'id')->get();
-    }
-
-    public function allAuthorities()
-    {
-        return $this->certificate->all()->filter(function ($certificate){
-            return $certificate->isAuthority();
-        });
+        $certificates = $this->certificate->where('issuer', '=', $id)->whereColumn('issuer','!=', 'id')->get();
+        switch ($type){
+            case CertificateTypeEnum::CA:
+                return $certificates->where('type', '=', CertificateTypeEnum::CA);
+            case CertificateTypeEnum::SUB_CA:
+                return $certificates->where('type', '=', CertificateTypeEnum::SUB_CA);
+            case CertificateTypeEnum::CERT:
+                return $certificates->where('type', '=', CertificateTypeEnum::CERT);
+        }
+        return $certificates;
     }
 
     public function allRootAuthorities()
