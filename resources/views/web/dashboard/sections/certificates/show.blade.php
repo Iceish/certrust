@@ -11,7 +11,7 @@
         <x-slot:header class="container__header--primary">
             <i class="fa-solid fa-lock"></i> <p>{{ $certificate->common_name }}</p>
         </x-slot:header>
-        <x-slot:body class="authority-show__nav">
+        <x-slot:body class="certificate-panel">
             <div class="labeled-list">
                 <ul>
                     <li>
@@ -40,10 +40,10 @@
                     </li>
                 </ul>
             </div>
-            <div class="vertical-separator"></div>
-            <div class="action-panel">
-                <a href="{{ route('dashboard.certificates.download', ['field'=> 'public_key', 'certificate' => $certificate]) }}" class="muted"><i class="fa-solid fa-file-lines"></i><p>Download CRT</p></a>
-                <a href="{{ route('dashboard.certificates.download', ['field'=> 'private_key', 'certificate' => $certificate]) }}" class="muted"><i class="fa-solid fa-key"></i><p>Download private key</p></a>
+            <hr class="separator separator--vertical"/>
+            <div class="certificate-panel__actions">
+                <a href="{{ route('dashboard.certificates.download', ['field'=> 'public_key', 'certificate' => $certificate]) }}" class="muted"><i class="fa-solid fa-file-lines"></i><p>Download certificate (.crt)</p></a>
+                <a href="{{ route('dashboard.certificates.download', ['field'=> 'private_key', 'certificate' => $certificate]) }}" class="muted"><i class="fa-solid fa-key"></i><p>Download private key (.key)</p></a>
                 <a href="{{ route('dashboard.certificates.destroy', $certificate->id) }}" class="danger"><i class="fa-solid fa-trash"></i><p>Delete</p></a>
             </div>
 
@@ -51,35 +51,18 @@
     </x-dashboard.container>
 
     @unless($certificate->type === \App\Enums\CertificateTypeEnum::CERT)
-        <div class="authority__issued-certificates">
+
+        <div class="certificate-issued-items">
+
             <x-dashboard.container>
                 <x-slot:header class="container__header--secondary">
                     <i class="fa-solid fa-lock"></i> <p>Sub-CA</p>
                 </x-slot:header>
                 <x-slot:body>
-                    <a href="{{ route('dashboard.certificates.create', ['type'=>'1', 'issuer'=> $certificate->id]) }}" class="btn btn--primary create_authority_btn">
-                        <i class="fa-regular fa-square-plus"></i> <p>Create Sub-CA</p>
+                    <a href="{{ route('dashboard.certificates.create', ['type'=>'1', 'issuer'=> $certificate->id]) }}" class="btn btn--primary">
+                        <i class="fa-regular fa-square-plus"></i> <p>New</p>
                     </a>
-                    <div class="table">
-                        <div class="cell header">
-                            <div>Common name</div>
-                            <div>Organization</div>
-                            <div>Country name</div>
-                            <div>State or province name</div>
-                            <div>Expires on</div>
-                            <div>Actions</div>
-                        </div>
-                        @foreach($issuedSubCAs as $issuedSubCA)
-                            <div class="cell row">
-                                <div>{{ $issuedSubCA->common_name }}</div>
-                                <div>{{ $issuedSubCA->organization }}</div>
-                                <div>{{ $issuedSubCA->country_name }}</div>
-                                <div>{{ $issuedSubCA->state_or_province_name }}</div>
-                                <div><span class="status {{ $issuedSubCA->hasExpired() ? 'status--danger' : ($issuedSubCA->expireSoon() ? 'status--warning' : '')}}"></span> {{ $issuedSubCA->expires_on->format('d M, Y') }} <span class="muted">({{ date_diff($issuedSubCA->expires_on, new DateTime())->days }} days left)</span></div>
-                                <div class="row__actions"><a href="{{ route('dashboard.certificates.show', ['certificate' => $issuedSubCA]) }}"><i class="fa-solid fa-xl fa-magnifying-glass"></i></a></div>
-                            </div>
-                        @endforeach
-                    </div>
+                    <x-dashboard.Certificate-table :certificates="$issuedSubCAs"/>
                 </x-slot:body>
             </x-dashboard.container>
 
@@ -88,38 +71,13 @@
                     <i class="fa-solid fa-lock"></i> <p>End-user certificate</p>
                 </x-slot:header>
                 <x-slot:body>
-                    <a href="{{ route('dashboard.certificates.create', ['type'=>'2', 'issuer'=> $certificate->id]) }}" class="btn btn--primary create_authority_btn">
-                        <i class="fa-regular fa-square-plus"></i> <p>Create end-user certificate</p>
+                    <a href="{{ route('dashboard.certificates.create', ['type'=>'2', 'issuer'=> $certificate->id]) }}" class="btn btn--primary">
+                        <i class="fa-regular fa-square-plus"></i> <p>New</p>
                     </a>
-                    <div class="table">
-                        <div class="cell header">
-                            <div>Common name</div>
-                            <div>Organization</div>
-                            <div>Country name</div>
-                            <div>State or province name</div>
-                            <div>Expires on</div>
-                            <div>Actions</div>
-                        </div>
-                        @foreach($issuedCertificates as $issuedCertificate)
-                            <div class="cell row">
-                                <div>{{ $issuedCertificate->common_name }}</div>
-                                <div>{{ $issuedCertificate->organization }}</div>
-                                <div>{{ $issuedCertificate->country_name }}</div>
-                                <div>{{ $issuedCertificate->state_or_province_name }}</div>
-                                <div><span class="status {{ $issuedCertificate->hasExpired() ? 'status--danger' : ($issuedCertificate->expireSoon() ? 'status--warning' : '')}}"></span> {{ $issuedCertificate->expires_on->format('d M, Y') }} <span class="muted">({{ date_diff($issuedCertificate->expires_on, new DateTime())->days }} days left)</span></div>
-                                <div class="row__actions"><a href="{{ route('dashboard.certificates.show', ['certificate' => $issuedCertificate]) }}"><i class="fa-solid fa-xl fa-magnifying-glass"></i></a></div>
-                            </div>
-                        @endforeach
-                    </div>
+                    <x-dashboard.Certificate-table :certificates="$issuedCertificates"/>
                 </x-slot:body>
             </x-dashboard.container>
         </div>
-    @endif
-
-
-
-
-
-
+    @endunless
 
 @endsection

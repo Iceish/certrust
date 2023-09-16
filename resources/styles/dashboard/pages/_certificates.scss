@@ -2,38 +2,102 @@
 
 
 #certificates{
-    .create_authority_btn{
-        align-self: start;
-    }
 
-    .authority-show__nav{
-        display: flex;
-        flex-direction: row;
-        gap: var(--size-spacing-2xl);
-    }
-
-    .action-panel{
+    .certificate-panel{
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
 
-        justify-self: flex-end;
-
-        gap: var(--size-spacing-s);
-
-        a{
-            display: grid;
-            grid-template-columns: 20px 1fr;
-        }
-    }
-
-    .authority__issued-certificates{
-        display: flex;
-        flex-direction: column;
-        gap: var(--size-spacing-m);
+        gap: var(--size-spacing-xl);
 
         @include media('>large'){
             flex-direction: row;
         }
+
+        &__actions{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            justify-self: flex-end;
+
+            gap: var(--size-spacing-s);
+
+            a{
+                display: grid;
+                grid-template-columns: 20px 1fr;
+            }
+        }
     }
+
+    .certificate-issued-items{
+        display: grid;
+        gap: var(--size-spacing-m);
+        grid-template-columns: 1fr;
+
+
+        @include media('>large'){
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        }
+    }
+
+    .card{
+        display: flex;
+        flex-direction: column;
+        gap: var(--size-spacing-m);
+
+        &__header{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            :nth-child(1){
+                display: flex;
+                flex-direction: column;
+                gap: var(--size-spacing-xs);
+            }
+        }
+
+        &__title{
+            font-weight: var(--weight-font-bold);
+        }
+
+        &__body{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            gap: var(--size-spacing-s);
+        }
+
+        hr{
+            width: 100%;
+            height: 1px;
+            background-color: var(--clr-text-muted);
+            opacity: 0.2;
+            border: 0;
+            margin: 0;
+        }
+
+        &__footer{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            text-transform: uppercase;
+            font-size: 0.7rem!important;
+            color: var(--clr-text-muted);
+
+            gap: var(--size-spacing-s);
+        }
+
+        &__actions{
+            font-size: 1.5rem;
+            color: var(--clr-primary);
+        }
+    }
+
+    .grid-card{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--size-spacing-m);
+    }
+
 }

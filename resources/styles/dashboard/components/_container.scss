@@ -2,6 +2,8 @@
     $header-height: 50px;
     position: relative;
     display: flex;
+    width: 100%;
+
 
     &__header{
         position: absolute;
@@ -42,7 +44,7 @@
     }
     &__body{
         width: 100%;
-
+        overflow-x: hidden;
         padding: var(--size-spacing-m);
         background-color: var(--clr-background-accent);
         border-radius: 15px;
