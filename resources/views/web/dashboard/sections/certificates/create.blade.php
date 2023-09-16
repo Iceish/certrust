@@ -19,9 +19,15 @@
     @endif
 
     <x-dashboard.container>
-        <x-slot:header>
-            <h2><i class="fa-solid fa-lock"></i> New authority</h2>
+        <x-slot:header class="container__header--primary">
+            <h2><i class="fa-solid fa-lock"></i> New Certificate</h2>
         </x-slot:header>
+        <x-slot:body>
+            <p class="muted"><i class="fa-solid fa-circle-info"></i> You are creating a new {{ Request::get('type') === '0' ? 'root-authority' : (Request::get('type') === '1' ? 'sub-authority' : 'end-user certificate') }}.</p>
+        </x-slot:body>
+    </x-dashboard.container>
+
+    <x-dashboard.container>
         <x-slot:body>
             <form class="form" action="{{ route('dashboard.certificates.store') }}" method="POST">
                 @csrf
@@ -60,7 +66,7 @@
                 </div>
 
 
-                <input class="btn" type="submit" value="Submit"/>
+                <button onclick="this.form.submit()" class="btn btn--primary" type="submit"><i class="fa-solid fa-paper-plane"></i> Submit</button>
             </form>
         </x-slot:body>
     </x-dashboard.container>

@@ -13,13 +13,20 @@
         grid-template-columns: 1fr 1fr 1fr;
     }
 
+    .btn{
+        background-color: transparent;
+        align-self: center;
+        justify-self: center;
+    }
+
     &__field{
         display: flex;
         flex-direction: column;
         gap: var(--size-spacing-xs);
 
+
         > input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),{
-            background-color: var(--secondary);
+            background-color: var(--clr-background);
             border: 0;
             border-radius: 5px;
             padding: var(--size-spacing-s);
