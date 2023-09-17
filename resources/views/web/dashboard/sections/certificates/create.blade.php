@@ -7,17 +7,6 @@
 @section('tag', 'certificates')
 
 @section('main')
-    @if($errors->any())
-        <div class="alert error">
-            <div class="title">Error</div>
-            <div class="message">
-                @foreach($errors->all() as $error)
-                    <div>{{ $error }}</div>
-                @endforeach
-            </div>
-        </div>
-    @endif
-
     <x-dashboard.container>
         <x-slot:header class="container__header--primary">
             <h2><i class="fa-solid fa-lock"></i> New Certificate</h2>

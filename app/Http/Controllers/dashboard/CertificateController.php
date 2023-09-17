@@ -38,7 +38,7 @@ class CertificateController extends Controller
     public function destroy(Certificate $certificate)
     {
         $this->certificateRepository->delete($certificate->id);
-        return redirect()->route('dashboard.certificates.index');
+        return redirect()->route('dashboard.certificates.index')->with('success', 'Certificate deleted successfully');
     }
 
     public function store(CreateCertificateRequest $request)
@@ -62,7 +62,7 @@ class CertificateController extends Controller
             "sha1_fingerprint" => $authority['fingerprints']['sha1'],
         ];
         $this->certificateRepository->create($certificate);
-        return redirect()->route('dashboard.certificates.index');
+        return redirect()->route('dashboard.certificates.index')->with('success', 'Certificate created successfully');
     }
 
     public function download(Certificate $certificate, string $field)

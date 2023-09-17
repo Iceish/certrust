@@ -17,6 +17,17 @@
         <script src="{{ @asset('js/theme-switch.js') }}"></script>
         <script src="{{ @asset('js/swal.js') }}"></script>
 
+        @if($errors->any())
+            <script>
+                Toast.fire({icon: 'error',title: '{{ implode('\n', $errors->all()) }}'});
+            </script>
+        @endif
+        @if(!empty(session('success')))
+            <script>
+                Toast.fire({icon: 'success',title: '{{ session('success') }}' });
+            </script>
+        @endif
+
         @stack('scripts')
     </body>
 </html>
