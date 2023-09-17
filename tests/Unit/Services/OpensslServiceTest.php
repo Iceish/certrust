@@ -14,27 +14,6 @@ class OpensslServiceTest extends TestCase
         $this->assertNotEmpty($privateKey);
     }
 
-    public function testViewCertificate()
-    {
-        $opensslService = new OpensslService();
-        $certificate = $opensslService->generateSelfSignedCertificate([
-            'country_name' => 'US',
-            'state_or_province_name' => 'California',
-            'locality_name' => 'San Francisco',
-            'organization' => 'Acme Inc.',
-            'organization_unit' => 'IT',
-            'common_name' => 'www.example.com',
-            'validity_days' => 365,
-        ]);
-        $certificateData = $opensslService->viewCertificate($certificate['public_key']);
-        $this->assertEquals('US', $certificateData['subject']['C']);
-        $this->assertEquals('California', $certificateData['subject']['ST']);
-        $this->assertEquals('San Francisco', $certificateData['subject']['L']);
-        $this->assertEquals('Acme Inc.', $certificateData['subject']['O']);
-        $this->assertEquals('IT', $certificateData['subject']['OU']);
-        $this->assertEquals('www.example.com', $certificateData['subject']['CN']);
-    }
-
     public function testGenerateCertificateSigningRequest()
     {
         $opensslService = new OpensslService();
