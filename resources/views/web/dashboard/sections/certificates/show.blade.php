@@ -47,9 +47,7 @@
         </x-dashboard.container>
 
         <x-dashboard.container>
-            <x-slot:header>
-            </x-slot:header>
-            <x-slot:body>
+            <x-slot:body class="container__body--align-with-full-container">
                 <div class="certificate-panel__actions">
                     <a href="{{ route('dashboard.certificates.download', ['field'=> 'public_key', 'certificate' => $certificate]) }}" class="muted"><i class="fa-solid fa-file-lines"></i><p>Download certificate (.crt)</p></a>
                     <a href="{{ route('dashboard.certificates.download', ['field'=> 'private_key', 'certificate' => $certificate]) }}" class="muted"><i class="fa-solid fa-key"></i><p>Download private key (.key)</p></a>
