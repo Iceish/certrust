@@ -55,6 +55,18 @@ class CertificateRepository
         });
     }
 
+    public function getPathToRootCA(string $id)
+    {
+        $path = collect();
+        $certificate = $this->certificate->find($id);
+        while ($certificate->type !== CertificateTypeEnum::CA){
+            $path->prepend(['id' => $certificate->id, 'common_name' => $certificate->common_name]);
+            $certificate = $this->certificate->find($certificate->issuer);
+        }
+        $path->prepend(['id' => $certificate->id, 'common_name' => $certificate->common_name]);
+        return $path;
+    }
+
     public function update(string $id, array $data)
     {
         return $this->certificate->find($id)->update($data);

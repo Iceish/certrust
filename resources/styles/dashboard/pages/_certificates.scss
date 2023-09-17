@@ -2,24 +2,26 @@
 
 
 #certificates{
-
     .certificate-panel{
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--size-spacing-m);
 
-        gap: var(--size-spacing-xl);
+        @include media('>medium'){
+            grid-template-columns: 1fr auto;
+        }
 
-        @include media('>large'){
-            flex-direction: row;
+        &__detailed{
+            display: flex;
+            flex-direction: column;
+            gap: var(--size-spacing-xl);
+
         }
 
         &__actions{
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-
-            justify-self: flex-end;
-
             gap: var(--size-spacing-s);
 
             a{
@@ -27,7 +29,9 @@
                 grid-template-columns: 20px 1fr;
             }
         }
+
     }
+
 
     .certificate-issued-items{
         display: grid;

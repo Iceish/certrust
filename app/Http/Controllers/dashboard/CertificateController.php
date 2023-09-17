@@ -24,9 +24,10 @@ class CertificateController extends Controller
 
     public function show(Certificate $certificate)
     {
+        $paths = $this->certificateRepository->getPathToRootCA($certificate->id);
         $issuedCertificates = $this->certificateRepository->allIssuedBy($certificate->id, CertificateTypeEnum::CERT);
         $issuedSubCAs = $this->certificateRepository->allIssuedBy($certificate->id, CertificateTypeEnum::SUB_CA);
-        return view('web.dashboard.sections.certificates.show', compact('issuedCertificates','issuedSubCAs', 'certificate'));
+        return view('web.dashboard.sections.certificates.show', compact('issuedCertificates','issuedSubCAs', 'certificate', 'paths'));
     }
 
     public function create()
