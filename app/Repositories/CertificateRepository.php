@@ -4,11 +4,9 @@ namespace App\Repositories;
 
 use App\Enums\CertificateTypeEnum;
 use App\Models\Certificate;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class CertificateRepository
 {
-    use HasUuids;
     public function __construct(
         private readonly Certificate $certificate
     ){}
@@ -17,7 +15,8 @@ class CertificateRepository
     {
         $model = new Certificate();
         $model->fill($data);
-        $model->id = $this->newUniqueId();
+
+        $model->id = $model->newUniqueId();
         if ($data['issuer'] === 'this'){
             $model->issuer()->associate($model);
         }
