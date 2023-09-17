@@ -56,7 +56,7 @@ hr.separator{
     }
 }
 
-.swal2-popup{
-    background: var(--clr-background);
-    color: var(--clr-text);
+.swal2-popup, .swal2-toast{
+    background: var(--clr-background)!important;
+    color: var(--clr-text)!important;
 }
