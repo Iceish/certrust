@@ -47,6 +47,26 @@
         </x-dashboard.container>
 
         <x-dashboard.container>
+            <x-slot:body class="container__body--align-with-full-container certificate-panel__expire">
+                @php
+                    $expire_diff = $certificate->expires_on->timestamp - $certificate->issued_on->timestamp;
+                    $current_diff = time() - $certificate->issued_on->timestamp;
+                    $percentage = (int) round( $current_diff / $expire_diff * 100 );
+                @endphp
+                <div class="expire__pie pie" style="
+                    --p:{{ $percentage }};
+                    --color-incomplete: var({{ $certificate->hasExpired() ? '--clr-danger' : ($certificate->expireSoon() ? '--clr-warning' : '--clr-success') }});
+                    --color-complete: var({{ $certificate->hasExpired() ? '--clr-danger' : '--clr-text-muted' }});
+                    "><span>Expire time</span>
+                </div>
+                <div class="expire__text">
+                    <p>{{ $certificate->expires_on->format('d M, Y') }}</p>
+                    <p>({{ date_diff($certificate->expires_on, new DateTime())->days }} days left)</p>
+                </div>
+            </x-slot:body>
+        </x-dashboard.container>
+
+        <x-dashboard.container>
             <x-slot:body class="container__body--align-with-full-container">
                 <div class="certificate-panel__actions">
                     <a href="{{ route('dashboard.certificates.download', ['field'=> 'public_key', 'certificate' => $certificate]) }}" class="muted"><i class="fa-solid fa-file-lines"></i><p>Download certificate (.crt)</p></a>

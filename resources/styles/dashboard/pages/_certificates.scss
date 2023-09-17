@@ -8,7 +8,7 @@
         gap: var(--size-spacing-m);
 
         @include media('>medium'){
-            grid-template-columns: 1fr auto;
+            grid-template-columns: 1fr auto auto;
         }
 
         &__detailed{
@@ -31,6 +31,24 @@
                 display: grid;
                 grid-template-columns: 20px 1fr;
             }
+        }
+        &__expire{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--size-spacing-s);
+
+            .expire__text{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: var(--size-spacing-xs);
+                :nth-child(2){
+                    font-size: 0.7rem;
+                    color: var(--clr-text-muted);
+
+                }
+        }
         }
 
     }
