@@ -71,7 +71,7 @@
                 <div class="certificate-panel__actions">
                     <a href="{{ route('dashboard.certificates.download', ['field'=> 'public_key', 'certificate' => $certificate]) }}" class="muted"><i class="fa-solid fa-file-lines"></i><p>Download certificate (.crt)</p></a>
                     <a href="{{ route('dashboard.certificates.download', ['field'=> 'private_key', 'certificate' => $certificate]) }}" class="muted"><i class="fa-solid fa-key"></i><p>Download private key (.key)</p></a>
-                    <a href="{{ route('dashboard.certificates.destroy', $certificate->id) }}" class="danger"><i class="fa-solid fa-trash"></i><p>Delete</p></a>
+                    <p class="danger" style="cursor: pointer;" onclick="deleteCertificate()"><i class="fa-solid fa-trash"></i> Delete</p>
                 </div>
             </x-slot:body>
         </x-dashboard.container>
@@ -118,3 +118,17 @@
     @endunless
 
 @endsection
+
+@push('scripts')
+    <script>
+        function deleteCertificate() {
+            Confirm.fire({
+                confirmButtonText: 'Yes, delete {{ $certificate->common_name }} !'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.location.href = '{{ route('dashboard.certificates.destroy', $certificate->id) }}'
+                }
+            })
+        }
+    </script>
+@endpush

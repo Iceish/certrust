@@ -12,7 +12,7 @@ body{
     display: none;
 }
 
-div,span,a,p,i{
+div,span,a,p,i,button{
     &.muted{
         color: var(--clr-text-muted);
         font-weight: var(--weight-font-normal);
@@ -54,4 +54,9 @@ hr.separator{
         font-size: 2rem;
         color: var(--clr-secondary);
     }
+}
+
+.swal2-popup{
+    background: var(--clr-background);
+    color: var(--clr-text);
 }
