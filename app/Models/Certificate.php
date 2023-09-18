@@ -3,13 +3,15 @@
 namespace App\Models;
 
 use App\Enums\CertificateTypeEnum;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Certificate extends Model
 {
-    use HasUuids;
+    use HasUuids, HasFactory;
     protected $fillable = [
         'type',
         'common_name',
@@ -33,17 +35,18 @@ class Certificate extends Model
         'type' => CertificateTypeEnum::class
     ];
 
-    public function issuer()
+    public function issuer(): BelongsTo
     {
         return $this->belongsTo(Certificate::class, 'issuer');
     }
 
-    public function certificates()
+    public function certificates(): HasMany
     {
         return $this->hasMany(Certificate::class, 'issuer');
     }
 
-    public function countCertificatesByType(){
+    public function countCertificatesByType(): array
+    {
         $certificates = $this->certificates();
         return [
             'sub_ca' => $certificates->where('type', CertificateTypeEnum::SUB_CA)->count(),
@@ -51,12 +54,12 @@ class Certificate extends Model
         ];
     }
 
-    public function isAuthority()
+    public function isAuthority(): bool
     {
         return ($this->type === CertificateTypeEnum::CA) || ($this->type === CertificateTypeEnum::SUB_CA);
     }
 
-    public function isRootAuthority()
+    public function isRootAuthority(): bool
     {
         return $this->type === CertificateTypeEnum::CA;
     }
@@ -65,7 +68,7 @@ class Certificate extends Model
     {
         return $this->expires_on->isPast();
     }
-    public function expireSoon()
+    public function expireSoon(): bool
     {
         return $this->expires_on->diffInDays(now()) < 30 && !$this->hasExpired();
     }
