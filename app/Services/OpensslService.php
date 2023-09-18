@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Services;
+use App\Models\Certificate;
+
 class OpensslService
 {
     public function generatePrivateKey($keySize = 4096){
@@ -63,6 +65,34 @@ class OpensslService
         $certificate = openssl_csr_sign($csr, $authority, $authorityKey, 365);
         openssl_x509_export($certificate, $certificateString);
         return($certificateString);
+    }
+
+    public function authorityStatistic(Certificate $certificate): array
+    {
+        $nbSubCertificates = $certificate->certificates()->count();
+        $result = [
+            "certificates" => 0,
+            "certificates_expired" => 0,
+            "sub_ca" => 0,
+            "sub_ca_expired" => 0
+        ];
+        if($nbSubCertificates == 0){
+            $result["certificates"] = 1;
+            $result["certificates_expired"] = $certificate->hasExpired() ? 1 : 0;
+        }else if($certificate->issuer !== $certificate->id){
+            $result["sub_ca"] = 1;
+            $result["sub_ca_expired"] = $certificate->hasExpired() ? 1 : 0;
+        }
+
+        foreach($certificate->certificates as $subCertificate){
+            if($subCertificate->id === $certificate->id) continue;
+            $subCertificateStatistic = $this->authorityStatistic($subCertificate);
+            $result["certificates"] += $subCertificateStatistic["certificates"];
+            $result["certificates_expired"] += $subCertificateStatistic["certificates_expired"];
+            $result["sub_ca"] += $subCertificateStatistic["sub_ca"];
+            $result["sub_ca_expired"] += $subCertificateStatistic["sub_ca_expired"];
+        }
+        return $result;
     }
 
 }
