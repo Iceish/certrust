@@ -1,9 +1,9 @@
 <?php
 
-namespace Services;
+namespace Tests\Unit\Services;
 
 use App\Services\OpensslService;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class OpensslServiceTest extends TestCase
 {
