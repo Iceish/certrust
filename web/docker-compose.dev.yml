@@ -1,0 +1,13 @@
+services:
+  client:
+    image: certrust-web
+    restart: on-failure
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    ports:
+      - 3000:3000
+      - 24012:24012
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
