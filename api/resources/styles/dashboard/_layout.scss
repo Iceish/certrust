@@ -1,0 +1,141 @@
+@use '/resources/styles/utils' as *;
+//*{
+//    outline: 1px red solid;
+//}
+body{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: auto 1fr;
+
+    background-color: var(--clr-background);
+    color: var(--clr-text);
+}
+
+// MAIN
+
+main{
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--size-spacing-l);
+    padding: var(--size-spacing-m);
+
+    overflow-y: auto;
+
+    .hero{
+        width: 100%;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        padding: var(--size-spacing-m);
+        margin-bottom: var(--size-spacing-xl);
+
+        .theme-switch{
+            label{
+                cursor: pointer;
+            }
+            &__btn{
+                display: none;
+            }
+        }
+    }
+
+    .flare{
+        display: none;
+        position: fixed;
+        z-index: -1;
+    }
+
+    #section-title{
+        color: var(--clr-secondary);
+        font-size: 2rem;
+        font-weight: var(--weight-font-bold);
+    }
+}
+
+/// HEADER (SIDEBAR)
+
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: var(--size-spacing-m);
+
+    .nav{
+        width: 100%;
+        height: 100%;
+
+        padding: var(--size-spacing-s);
+
+        border-radius: 15px;
+        background-color: var(--clr-background-accent);
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--size-spacing-2xl);
+        color: var(--clr-text);
+        @include media('>small'){
+            padding: var(--size-spacing-m);
+        }
+        @include media('>medium'){
+            padding: var(--size-spacing-l);
+        }
+
+
+        ul{
+            display: flex;
+            flex-direction: column;
+            gap: var(--size-spacing-xl);
+        }
+
+        &__logo{
+            width: 25px;
+            fill: var(--clr-primary);
+
+            @include media('>small'){
+                width: 35px;
+            }
+            @include media('>medium'){
+                width: 50px;
+            }
+        }
+
+        &__link {
+            height: 40px;
+            display: grid;
+            grid-template-columns: 20px;
+            gap: var(--size-spacing-s);
+
+            align-items: center;
+
+            i{
+                justify-self: center;
+            }
+
+            @include media('>medium') {
+                grid-template-columns: 20px 1fr;
+                justify-content: flex-start;
+            }
+
+            &--text {
+                display: none;
+                @include media('>medium') {
+                    display: block;
+                }
+            }
+
+            &--active{
+                color: var(--clr-secondary);
+            }
+        }
+    }
+}
+
+

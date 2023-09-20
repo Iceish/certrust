@@ -1,0 +1,31 @@
+@use '/resources/styles/utils' as *;
+
+.certificate-table{
+    &__actions{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: var(--size-spacing-s);
+        align-items: center;
+
+        color: var(--clr-primary);
+    }
+
+    .cell{
+        @include media('>medium'){
+            grid-template-columns: repeat(5, 1fr) 20px;
+        }
+
+        &--empty{
+            grid-template-columns: 1fr;
+            justify-items: center;
+        }
+    }
+
+    &__expire-col{
+        :nth-child(2){
+            font-size: 0.7rem;
+            color: var(--clr-text-muted);
+        }
+    }
+}

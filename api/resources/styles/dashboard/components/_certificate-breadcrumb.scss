@@ -1,0 +1,13 @@
+@use '/resources/styles/utils' as *;
+
+.certificate-breadcrumb{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    &__item{
+        color: var(--clr-text-muted);
+        font-size: 0.9rem;
+        padding: var(--size-spacing-s);
+    }
+}
