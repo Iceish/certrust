@@ -10,7 +10,7 @@ WORKDIR /usr/src/app
 # Copy over `package.json` and lock files to optimize the build process
 COPY ["package.json", "package-lock.json*", "./"]
 # Install Node modules
-RUN yarn
+RUN npm install
 
 # Copy over rest of the project files
 COPY . .
