@@ -1,7 +1,8 @@
 services:
-  client:
+  dev-certrust-web:
     image: certrust-web
-    restart: on-failure
+    restart: unless-stopped
+    container_name: 'dev-certrust-web'
     build:
       context: ./
       dockerfile: Dockerfile.dev
@@ -11,3 +12,9 @@ services:
     volumes:
       - ./:/usr/src/app
       - /usr/src/app/node_modules
+    networks:
+      net-certrust:
+
+networks:
+  net-dev-certrust-web:
+    driver: bridge
