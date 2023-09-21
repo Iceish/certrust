@@ -13,7 +13,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('web.dashboard.sections.home.index');
+        return response()->json('Welcome to the Certrust API!', 200);
     }
 
 }

@@ -9,7 +9,7 @@ class SettingsController extends Controller
     public function __construct(){}
     public function index()
     {
-        return view('web.dashboard.sections.settings.index');
+        return response()->json('Settings', 200);
     }
 
 }

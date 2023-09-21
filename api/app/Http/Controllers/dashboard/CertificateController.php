@@ -19,7 +19,12 @@ class CertificateController extends Controller
     public function index()
     {
         $rootAuthorities = $this->certificateRepository->allRootAuthorities();
-        return view('web.dashboard.sections.certificates.index', compact('rootAuthorities'));
+        return response()->json(
+            [
+                'certificates' => $rootAuthorities,
+            ],
+            200
+        );
     }
 
     public function show(Certificate $certificate)
@@ -27,18 +32,26 @@ class CertificateController extends Controller
         $paths = $this->certificateRepository->getPathToRootCA($certificate->id);
         $issuedCertificates = $this->certificateRepository->allIssuedBy($certificate->id, CertificateTypeEnum::CERT);
         $issuedSubCAs = $this->certificateRepository->allIssuedBy($certificate->id, CertificateTypeEnum::SUB_CA);
-        return view('web.dashboard.sections.certificates.show', compact('issuedCertificates','issuedSubCAs', 'certificate', 'paths'));
-    }
-
-    public function create()
-    {
-        return view('web.dashboard.sections.certificates.create');
+        return response()->json(
+            [
+                'certificate' => $certificate,
+                'issued_certificates' => $issuedCertificates,
+                'issued_sub_cas' => $issuedSubCAs,
+                'paths' => $paths,
+            ],
+            200
+        );
     }
 
     public function destroy(Certificate $certificate)
     {
         $this->certificateRepository->delete($certificate->id);
-        return redirect()->route('dashboard.certificates.index')->with('success', 'Certificate deleted successfully');
+        return response()->json(
+            [
+                'success' => 'Certificate deleted successfully',
+            ],
+            200
+        );
     }
 
     public function store(CreateCertificateRequest $request)
@@ -62,7 +75,12 @@ class CertificateController extends Controller
             "sha1_fingerprint" => $authority['fingerprints']['sha1'],
         ];
         $this->certificateRepository->create($certificate);
-        return redirect()->route('dashboard.certificates.index')->with('success', 'Certificate created successfully');
+        return response()->json(
+            [
+                'success' => 'Certificate created successfully',
+            ],
+            200
+        );
     }
 
     public function download(Certificate $certificate, string $field)

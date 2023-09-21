@@ -9,7 +9,7 @@ class ManagementController extends Controller
     public function __construct(){}
     public function index()
     {
-        return view('web.dashboard.sections.management.index');
+        return response()->json('Management', 200);
     }
 
 }

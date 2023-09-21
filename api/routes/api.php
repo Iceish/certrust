@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\dashboard\CertificateController;
+use App\Http\Controllers\dashboard\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/', [HomeController::class, 'index'])->name('index');
+
+Route::controller(CertificateController::class)->name('certificates.')->prefix('certificates')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/{certificate}/delete', 'destroy')->name('destroy');
+    Route::post('/create', 'store')->name('store');
+    Route::get('/{certificate}', 'show')->name('show');
+    Route::get('/{certificate}/download/{field}', 'download')->name('download')->where('field', 'public_key|private_key');
 });
