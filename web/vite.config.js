@@ -14,4 +14,11 @@ export default defineConfig({
             port: 24012,
         }
     },
+    resolve: {
+        alias: {
+            '$': '/src',
+            '$components': '/src/lib/components',
+            '$styles': '/static/styles',
+        }
+    }
 });
