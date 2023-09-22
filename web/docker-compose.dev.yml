@@ -5,13 +5,13 @@ services:
     container_name: 'dev-certrust-web'
     build:
       context: ./
-      dockerfile: Dockerfile.dev
+      target: 'develop-stage'
+    command: /bin/sh -c "npm i && npm --host run dev"
     ports:
       - 3000:3000
       - 24012:24012
     volumes:
       - ./:/usr/src/app
-      - /usr/src/app/node_modules
     networks:
       net-dev-certrust-web:
 

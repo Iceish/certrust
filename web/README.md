@@ -1,6 +1,6 @@
 # Certrust - Web UI
 
-This is the web UI for Certrust. It is built with [SvelteKit](https://kit.svelte.dev/). It is a [Docker](https://www.docker.com/) container that is built with [Docker Compose](https://docs.docker.com/compose/).
+This is the API for Certrust. It is built with Vue3. It is a [Docker](https://www.docker.com/) container that is built with [Docker Compose](https://docs.docker.com/compose/).
 
 ❗ **Note**: Do not launch this container directly. This readme is for development only. See [certrust](../README.md) for more information.
 
@@ -18,20 +18,18 @@ This is the web UI for Certrust. It is built with [SvelteKit](https://kit.svelte
 1. **Docker Setup:** Install Docker and Docker Compose if you haven't already. Certrust includes Docker Compose configurations for easy deployment.
 
 
-2. _(First time) Build image with ```--build```._
-```bash
-docker-compose -f docker-compose.dev.yml up --build
-```
+2. _(First time)_ Build docker image:
+   ```bash
+   docker compose -f docker-compose.dev.yml build
+   ```
 
-3. Launch docker compose.
-```bash
-docker-compose -f docker-compose.dev.yml up -d
-```
-
-
-4. **Access the Web UI:** Once the containers are up and running, access the Certrust web app through your browser by visiting [http://localhost:3000](http://localhost:3000).
+3. **Launch:** Start Certrust Web UI using Docker Compose:
+   ```bash
+   docker compose -f docker-compose.dev.yml up -d
+   ```
+4. **Access the Web UI:** Once the containers are up and running, access the Certrust Web UI app through your browser by visiting [http://localhost:3000](http://localhost:3000).
 
 ### Default config
 
-- **SvelteKit Port**: 3000
-- **Vite HMR**: 24012
+- **Web UI Port**: 3000
+- **HMR Port**: 24012

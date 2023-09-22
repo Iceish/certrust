@@ -1,24 +1,33 @@
-import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vitest/config';
+import { fileURLToPath, URL } from 'node:url'
 
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+// https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [sveltekit()],
-	test: {
-		include: ['src/**/*.{test,spec}.{js,ts}']
-	},
-    server: {
-        watch: {
-            usePolling: true,
-        },
-        hmr: {
-            port: 24012,
-        }
+  	plugins: [
+    		vue(),
+  	],
+  	resolve: {
+    		alias: {
+      			'@': fileURLToPath(new URL('./src', import.meta.url)),
+    		}
+  	},
+	server: {
+		host: true,
+		port: 3000,
+        	watch: {
+            		usePolling: true,
+        	},
+        	hmr: {
+            		port: 24012,
+        	}
     },
-    resolve: {
-        alias: {
-            '$': '/src',
-            '$components': '/src/lib/components',
-            '$styles': '/static/styles',
-        }
-    }
-});
+	css: {
+		preprocessorOptions: {
+			scss: {
+				additionalData: `@use "@/assets/styles/utils" as *;`,
+			},
+		},
+	},
+})
