@@ -48,7 +48,7 @@ class CertificateController extends Controller
         $this->certificateRepository->delete($certificate->id);
         return response()->json(
             [
-                'success' => 'Certificate deleted successfully',
+                'success' => 'Certificates deleted successfully',
             ],
             200
         );
@@ -77,7 +77,7 @@ class CertificateController extends Controller
         $this->certificateRepository->create($certificate);
         return response()->json(
             [
-                'success' => 'Certificate created successfully',
+                'success' => 'Certificates created successfully',
             ],
             200
         );

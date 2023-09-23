@@ -19,7 +19,7 @@ Breadcrumbs::for('dashboard', function (BreadcrumbTrail $trail) {
 });
 
 //============
-// Certificate
+// Certificates
 //============
 
 // Certificates
