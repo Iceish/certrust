@@ -1,35 +1,17 @@
 <script setup>
     import Container from "@/components/Container.vue";
+    import axios from 'axios';
+    import {ref} from "vue";
 
-    const rootAuthorities = [
-        {
-            'common_name': 'Auth',
-            'organization': 'Auth team',
-            'organization_unit': 'Auth unit',
-            'country_name': 'FR',
-            'state_or_province_name': 'Tulles',
-            'locality_name': 'Tulles',
-            'expires_on': new Date('2026-10-2')
-        },
-        {
-            'common_name': 'example.com',
-            'organization': 'Example Inc.',
-            'organization_unit': 'Example unit',
-            'country_name': 'US',
-            'state_or_province_name': 'California',
-            'locality_name': 'calif',
-            'expires_on': new Date('2024-12-31')
-        },
-        {
-            'common_name': 'london.uk',
-            'organization': 'london corp.',
-            'organization_unit': 'London unit',
-            'country_name': 'UK',
-            'state_or_province_name': 'Somewhere',
-            'locality_name': 'london',
-            'expires_on': new Date('2023-11-13')
-        },
-    ]
+    const rootAuthorities = ref([]);
+
+    const getRootAuthorities = async () => {
+        await axios.get('http://localhost/api/certificates').then(response => {
+            rootAuthorities.value = response.data.certificates;
+        });
+    }
+
+    await getRootAuthorities();
 </script>
 
 <template>
@@ -57,7 +39,7 @@
                         </div>
 
                         <div class="card__actions">
-                            <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                            <router-link :to="{ name: 'certificates.show', params : { id: rootAuthority.id } }"><i class="fa-solid fa-magnifying-glass"></i></router-link>
                         </div>
                     </div>
 
@@ -70,7 +52,7 @@
 
                     <div class="card__footer">
                         <div class="status {{ true ? 'status--danger' : ( true ? 'status--warning' : '')}}"></div>
-                        <p> {{ true ? 'Expired on' : 'Expire on' }} {{ rootAuthority.expires_on.getDay() }} <span class="muted">({{ 'X' }} {{ true ? 'days ago' : 'days left' }})</span></p>
+                        <p> {{ true ? 'Expired on' : 'Expire on' }} {{ rootAuthority.expires_on }} <span class="muted">({{ 'X' }} {{ true ? 'days ago' : 'days left' }})</span></p>
                     </div>
                 </div>
             </template>

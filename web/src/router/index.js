@@ -25,7 +25,7 @@ const router = createRouter({
             meta: { layout: DashboardLayout }
         },
         {
-            path: '/certificates/show',
+            path: '/certificates/:id',
             name: 'certificates.show',
             component: CertificatesShow,
             meta: { layout: DashboardLayout }

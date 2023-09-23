@@ -1,15 +1,27 @@
 <script setup>
-defineProps(['title'])
+import {computed} from "vue";
+
+const props = defineProps(['title','percentComplete','colorComplete','colorIncomplete']);
     // $expire_diff = $certificate->expires_on->timestamp - $certificate->issued_on->timestamp;
     // $current_diff = time() - $certificate->issued_on->timestamp;
     // $percentage = (int) round( $current_diff / $expire_diff * 100 );
+
+    const percentComplete = computed(() => {
+        return props.percentComplete;
+    })
+    const colorComplete = computed(() => {
+        return props.colorComplete;
+    })
+    const colorIncomplete = computed(() => {
+        return props.colorIncomplete;
+    })
 </script>
 
 <template>
     <div class="pie" :style="{
-        '--p' : 70,
-        '--color-incomplete' : true ? 'var(--clr-danger)' : (true ? 'var(--clr-warning)' : 'var(--clr-success)'),
-        '--color-complete' : true ? 'var(--clr-danger)' : 'var(--clr-text-muted)'
+        '--p' : percentComplete,
+        '--color-complete' : colorComplete,
+        '--color-incomplete' : colorIncomplete
     }
     "><span>{{ title }}</span>
     </div>
@@ -18,7 +30,7 @@ defineProps(['title'])
 <style scoped lang="scss">
     .pie {
         --pie-size: 100px;
-        --p: 70;
+        --p: 60;
         /* percentage to degree  */
         --v:calc( ((18/5) * var(--p) - 90)*1deg);
         --color-complete : var(--clr-primary);
