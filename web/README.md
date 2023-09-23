@@ -17,17 +17,11 @@ This is the API for Certrust. It is built with Vue3. It is a [Docker](https://ww
 
 1. **Docker Setup:** Install Docker and Docker Compose if you haven't already. Certrust includes Docker Compose configurations for easy deployment.
 
-
-2. _(First time)_ Build docker image:
-   ```bash
-   docker compose -f docker-compose.dev.yml build
-   ```
-
-3. **Launch:** Start Certrust Web UI using Docker Compose:
+2**Launch:** Start Certrust Web UI using Docker Compose:
    ```bash
    docker compose -f docker-compose.dev.yml up -d
    ```
-4. **Access the Web UI:** Once the containers are up and running, access the Certrust Web UI app through your browser by visiting [http://localhost:3000](http://localhost:3000).
+3**Access the Web UI:** Once the containers are up and running, access the Certrust Web UI app through your browser by visiting [http://localhost:3000](http://localhost:3000).
 
 ### Default config
 
