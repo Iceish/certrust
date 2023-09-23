@@ -8,10 +8,10 @@ defineProps(['title'])
 <template>
     <div class="pie" :style="{
         '--p' : 70,
-        '--color-incomplete' : true ? '--clr-danger' : (true ? '--clr-warning' : '--clr-success'),
-        '--color-complete' : true ? '--clr-danger' : '--clr-text-muted'
+        '--color-incomplete' : true ? 'var(--clr-danger)' : (true ? 'var(--clr-warning)' : 'var(--clr-success)'),
+        '--color-complete' : true ? 'var(--clr-danger)' : 'var(--clr-text-muted)'
     }
-    "><span>{{  title }}</span>
+    "><span>{{ title }}</span>
     </div>
 </template>
 

@@ -59,7 +59,7 @@ const certificate = {
         <Container class="container--align-with-full-container">
             <template #body>
                 <div class="certificate-panel__expire">
-                    <Pie/>
+                    <Pie title="Expire time"/>
                     <div class="expire__text">
                         <p>{{ certificate.expires_on.getDate() }}</p>
                         <p>({{ 0 }} days left)</p>
@@ -122,66 +122,104 @@ const certificate = {
 </template>
 
 <style scoped lang="scss">
-.certificate-panel{
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--size-spacing-m);
+    .certificate-panel{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--size-spacing-m);
 
-    @include media('>medium'){
-        grid-template-columns: 1fr auto auto;
-    }
-
-    &__detailed{
-        display: flex;
-        flex-direction: column;
-        gap: var(--size-spacing-xl);
-
-    }
-
-    &__actions{
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: var(--size-spacing-s);
-        justify-content: space-around;
-
-        padding: 0 var(--size-spacing-m);
-
-        a{
-            display: grid;
-            grid-template-columns: 20px 1fr;
+        @include media('>medium'){
+            grid-template-columns: 1fr auto auto;
         }
-    }
-    &__expire{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: var(--size-spacing-s);
 
-        .expire__text{
+        &__detailed{
+            display: flex;
+            flex-direction: column;
+            gap: var(--size-spacing-xl);
+
+        }
+
+        &__actions{
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: var(--size-spacing-s);
+            justify-content: space-around;
+
+            padding: 0 var(--size-spacing-m);
+
+            a{
+                display: grid;
+                grid-template-columns: 20px 1fr;
+            }
+        }
+        &__expire{
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: var(--size-spacing-xs);
-            :nth-child(2){
-                font-size: 0.7rem;
-                color: var(--clr-text-muted);
+            gap: var(--size-spacing-s);
 
+            .expire__text{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: var(--size-spacing-xs);
+                :nth-child(2){
+                    font-size: 0.7rem;
+                    color: var(--clr-text-muted);
+
+                }
+            }
+        }
+
+    }
+
+
+    .certificate-issued-items{
+        display: grid;
+        gap: var(--size-spacing-m);
+        grid-template-columns: 1fr;
+
+
+        @include media('>large'){
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        }
+    }
+
+    .certificate-breadcrumb{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        &__item{
+            color: var(--clr-text-muted);
+            font-size: 0.9rem;
+            padding: var(--size-spacing-s);
+        }
+    }
+    .labeled-list{
+        ul{
+            display: inline-grid;
+            grid-gap: var(--size-spacing-l);
+            grid-template-columns: repeat(1,auto);
+            @include media(">small"){
+                grid-template-columns: repeat(2,auto);
+            }
+            @include media(">medium"){
+                grid-template-columns: repeat(3,auto);
+            }
+        }
+
+        li{
+            display: inline-flex;
+            flex-direction: column;
+            gap: var(--size-spacing-xs);
+
+            div:nth-child(1){
+                color: var(--clr-text-muted);
+                font-size: 0.7em;
+                text-transform: uppercase;
             }
         }
     }
 
-}
-
-
-.certificate-issued-items{
-    display: grid;
-    gap: var(--size-spacing-m);
-    grid-template-columns: 1fr;
-
-
-    @include media('>large'){
-        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-    }
-}
 </style>

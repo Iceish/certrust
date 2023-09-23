@@ -5,6 +5,7 @@ import ManagementView from "@/views/ManagementView.vue";
 import SettingsView from "@/views/SettingsView.vue";
 import CertificateList from "@/views/Certificates/CertificatesList.vue";
 import CertificatesShow from "@/views/Certificates/CertificatesShow.vue";
+import CertificatesCreate from "@/views/Certificates/CertificatesCreate.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,6 +28,12 @@ const router = createRouter({
             path: '/certificates/show',
             name: 'certificates.show',
             component: CertificatesShow,
+            meta: { layout: DashboardLayout }
+        },
+        {
+            path: '/certificates/create',
+            name: 'certificates.create',
+            component: CertificatesCreate,
             meta: { layout: DashboardLayout }
         },
         // Management
