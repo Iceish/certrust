@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Certificate extends Model
 {
+    public $timestamps = false;
+
     use HasUuids, HasFactory;
     protected $fillable = [
         'type',
@@ -43,34 +45,6 @@ class Certificate extends Model
     public function certificates(): HasMany
     {
         return $this->hasMany(Certificate::class, 'issuer');
-    }
-
-    public function countCertificatesByType(): array
-    {
-        $certificates = $this->certificates();
-        return [
-            'sub_ca' => $certificates->where('type', CertificateTypeEnum::SUB_CA)->count(),
-            'cert' => $certificates->where('type', CertificateTypeEnum::CERT)->count()
-        ];
-    }
-
-    public function isAuthority(): bool
-    {
-        return ($this->type === CertificateTypeEnum::CA) || ($this->type === CertificateTypeEnum::SUB_CA);
-    }
-
-    public function isRootAuthority(): bool
-    {
-        return $this->type === CertificateTypeEnum::CA;
-    }
-
-    public function hasExpired()
-    {
-        return $this->expires_on->isPast();
-    }
-    public function expireSoon(): bool
-    {
-        return $this->expires_on->diffInDays(now()) < 30 && !$this->hasExpired();
     }
 
 }

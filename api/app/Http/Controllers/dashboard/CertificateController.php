@@ -13,15 +13,15 @@ class CertificateController extends Controller
 {
     public function __construct(
         private readonly OpensslService $opensslService,
-        private readonly CertificateRepository $certificateRepository
     ){}
 
     public function index()
     {
-        $rootAuthorities = $this->certificateRepository->allRootAuthorities();
+        $certificates = Certificate::all();
+
         return response()->json(
             [
-                'certificates' => $rootAuthorities,
+                'certificates' => $certificates,
             ],
             200
         );
@@ -29,15 +29,10 @@ class CertificateController extends Controller
 
     public function show(Certificate $certificate)
     {
-        $paths = $this->certificateRepository->getPathToRootCA($certificate->id);
-        $issuedCertificates = $this->certificateRepository->allIssuedBy($certificate->id, CertificateTypeEnum::CERT);
-        $issuedSubCAs = $this->certificateRepository->allIssuedBy($certificate->id, CertificateTypeEnum::SUB_CA);
+        Certificate::find($certificate->id);
         return response()->json(
             [
                 'certificate' => $certificate,
-                'issued_certificates' => $issuedCertificates,
-                'issued_sub_cas' => $issuedSubCAs,
-                'paths' => $paths,
             ],
             200
         );
@@ -45,7 +40,7 @@ class CertificateController extends Controller
 
     public function destroy(Certificate $certificate)
     {
-        $this->certificateRepository->delete($certificate->id);
+        $certificate->delete();
         return response()->json(
             [
                 'success' => 'Certificates deleted successfully',
@@ -70,11 +65,13 @@ class CertificateController extends Controller
             "private_key" => $authority['private_key'],
             "expires_on" => (new \DateTime())->modify($data['validity_days'] . ' days'),
             "issued_on" => new \DateTime(),
-            "issuer" => $data['issuer'] ?? 'this',
+            "issuer" => $data['issuer'] ?? null,
             "sha256_fingerprint" => $authority['fingerprints']['sha256'],
             "sha1_fingerprint" => $authority['fingerprints']['sha1'],
         ];
-        $this->certificateRepository->create($certificate);
+
+        Certificate::create($certificate);
+
         return response()->json(
             [
                 'success' => 'Certificates created successfully',

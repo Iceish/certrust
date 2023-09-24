@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('certificates', function (Blueprint $table) {
             $table->uuid('id');
-            $table->timestamps();
             $table->tinyinteger('type'); // 0 = CA, 1 = SUB_CA, 2 = CERT
             $table->string('common_name');
             $table->string('organization');
@@ -28,7 +27,8 @@ return new class extends Migration
             $table->string('sha256_fingerprint');
             $table->string('sha1_fingerprint');
             $table->primary('id');
-            $table->foreignUuid('issuer')->references('id')->on('certificates')->onDelete('cascade');
+            $table->uuid('issuer')->nullable();
+            $table->foreign('issuer')->references('id')->on('certificates')->onDelete('cascade');
         });
     }
 
