@@ -4,6 +4,7 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Enums\CertificateTypeEnum;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CertificateResource;
 use App\Models\Certificate;
 use App\Repositories\CertificateRepository;
 use App\Requests\Certificate\CreateCertificateRequest;
@@ -17,14 +18,8 @@ class CertificateController extends Controller
 
     public function index()
     {
-        $certificates = Certificate::all();
-
-        return response()->json(
-            [
-                'certificates' => $certificates,
-            ],
-            200
-        );
+//        return CertificateResource::collection(Certificate::limit(5)->with('issuer')->get());
+        return CertificateResource::collection(Certificate::limit(5)->get());
     }
 
     public function show(Certificate $certificate)
