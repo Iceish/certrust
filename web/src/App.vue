@@ -4,7 +4,7 @@ import {provide, Suspense, shallowRef} from "vue";
 import layouts from "@/router/layouts";
 
 const router = useRouter();
-let layout = shallowRef('div')
+let layout = shallowRef(null)
 
 router.afterEach((to) => {
     layout.value = layouts[to.meta.layout] || 'div';
@@ -17,9 +17,11 @@ provide('app:layout', layout);
 <template>
     <Suspense>
         <template #default>
-            <component :is="layout || 'div'">
+            <div>
+              <component :is="layout">
                 <RouterView />
-            </component>
+              </component>
+            </div>
         </template>
         <template #fallback>
             <div>loading..</div>

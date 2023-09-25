@@ -22,7 +22,8 @@ await getCertificate();
 let days_to_expire = moment(certificate.value.expires_on).diff(moment(certificate.value.issued_on), 'days');
 let days_left = moment(certificate.value.expires_on).diff(moment(), 'days');
 certificate.value.expire_percentage = 100-Math.ceil(days_left*100/days_to_expire);
-console.log(certificate.value)
+
+console.log(certificate.value.issued_certificates);
 </script>
 
 <template>
@@ -116,7 +117,14 @@ console.log(certificate.value)
                     <router-link :to="{ name : 'certificates.create'}" class="btn btn--primary">
                         <i class="fa-regular fa-square-plus"></i> <p>New</p>
                     </router-link>
-<!--                    <CertificateTable :certificates="certificate.issued_certificates"/>-->
+                    <CertificateTable
+                        :certificates="
+                          certificate.issued_certificates.filter(c => {
+                            if(c.type === 1){
+                                return c;
+                            }
+                          })"
+                    />
                 </template>
             </Container>
 
@@ -128,7 +136,14 @@ console.log(certificate.value)
                     <router-link :to="{ name : 'certificates.create'}" class="btn btn--primary">
                         <i class="fa-regular fa-square-plus"></i> <p>New</p>
                     </router-link>
-                    <CertificateTable/>
+                    <CertificateTable
+                        :certificates="
+                        certificate.issued_certificates.filter(c => {
+                          if(c.type === 2){
+                              return c;
+                          }
+                        })"
+                    />
                 </template>
             </Container>
         </div>

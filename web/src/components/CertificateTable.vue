@@ -1,5 +1,7 @@
 <script setup>
-    defineProps(['certificates']);
+    import moment from "moment/moment";
+
+    const props = defineProps(['certificates']);
 
     const columnNames = {
         'common_name': 'Common name',
@@ -19,19 +21,24 @@
             <div>Expires on</div>
             <div></div>
         </div>
-        <div v-for="certificate in certificates" class="cell row">
+        <div v-if="certificates.length" v-for="certificate in certificates" class="cell row">
             <div class="col"><span class="col__header">{{ columnNames['common_name'] }}</span><span class="col__content bold">{{ certificate.common_name }}</span></div>
             <div class="col"><span class="col__header">{{ columnNames['organization'] }}</span><span class="col__content">{{ certificate.organization }}</span></div>
             <div class="col"><span class="col__header">{{ columnNames['country_name'] }}</span><span class="col__content">{{ certificate.country_name }}</span></div>
             <div class="col"><span class="col__header">{{ columnNames['state_or_province_name'] }}</span><span class="col__content">{{ certificate.state_or_province_name }}</span></div>
             <div class="certificate-table__expire-col">
-                <p><span class="status {{ true ? 'status--danger' : (true ? 'status--warning' : '')}}"></span> {{ certificate.expires_on.getDate() }}</p>
-                <p>(X days left)</p></div>
+                <p><span
+                    class="status" :class="{
+                                'status--danger': certificate.has_expired,
+                                'status--warning': false,
+                             }"
+                ></span> {{ moment(certificate.expires_on).format('DD MMMM YYYY') }}</p>
+                <p>({{ Math.abs(moment(certificate.expires_on).diff(moment(), 'days')) }} {{ certificate.has_expired ? 'days ago' : 'days left' }})</p></div>
             <div class="certificate-table__actions"><a href="#"><i class="fa-solid fa-xl fa-magnifying-glass"></i></a></div>
         </div>
-<!--        <div class="cell cell&#45;&#45;empty row">-->
-<!--            <div class="muted">No certificates found.</div>-->
-<!--        </div>-->
+        <div v-else class="cell cell--empty row">
+            <div class="muted">No certificates found.</div>
+        </div>
     </div>
 </template>
 
