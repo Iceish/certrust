@@ -1,27 +1,6 @@
 <script setup>
-    const certificates = [
-        {
-            'common_name': 'Auth',
-            'organization': 'Auth team',
-            'country_name': 'FR',
-            'state_or_province_name': 'Tulles',
-            'expires_on': new Date('2026-10-2')
-        },
-        {
-            'common_name': 'example.com',
-            'organization': 'Example Inc.',
-            'country_name': 'US',
-            'state_or_province_name': 'California',
-            'expires_on': new Date('2024-12-31')
-        },
-        {
-            'common_name': 'london.uk',
-            'organization': 'london corp.',
-            'country_name': 'UK',
-            'state_or_province_name': 'Somewhere',
-            'expires_on': new Date('2023-11-13')
-        },
-    ]
+    defineProps(['certificates']);
+
     const columnNames = {
         'common_name': 'Common name',
         'organization': 'Organization',
