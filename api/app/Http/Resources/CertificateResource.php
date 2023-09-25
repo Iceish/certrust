@@ -23,6 +23,7 @@ class CertificateResource extends JsonResource
             'country_name' => $this->country_name,
             'state_or_province_name' => $this->state_or_province_name,
             'locality_name' => $this->locality_name,
+            'issued_on' => $this->issued_on,
             'expires_on' => $this->expires_on,
             'has_expired' => $this->expires_on->isPast(),
             $this->mergeWhen($request->query->has('issuer'),
