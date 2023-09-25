@@ -1,8 +1,6 @@
 <script setup>
-import {useRoute, useRouter} from "vue-router";
-import {provide, Suspense} from "vue";
-import { RouterLink, RouterView } from 'vue-router'
-import {ref, shallowRef, watch, watchEffect} from "vue";
+import { useRouter, RouterView} from "vue-router";
+import {provide, Suspense, shallowRef} from "vue";
 import layouts from "@/router/layouts";
 
 const router = useRouter();
