@@ -13,11 +13,15 @@ const certificate = ref({});
 
 const getCertificate = async () => {
     await axios.get('http://localhost/api/certificates/' + route.params.id).then(response => {
-        certificate.value = response.data.certificate;
+        certificate.value = response.data.data;
     });
 }
 
-getCertificate();
+await getCertificate();
+
+let days_to_expire = moment(certificate.value.expires_on).diff(moment(certificate.value.issued_on), 'days');
+let days_left = moment(certificate.value.expires_on).diff(moment(), 'days');
+certificate.value.expire_percentage = 100-Math.ceil(days_left*100/days_to_expire);
 
 </script>
 
@@ -68,9 +72,9 @@ getCertificate();
                 <div class="certificate-panel__expire">
                     <Pie
                         title="Expire time"
-                        :percent-complete=50
-                        :color-complete="true ? 'var(--clr-danger)' : 'var(--clr-text-muted)'"
-                        :color-incomplete="true ? 'var(--clr-danger)' : (true ? 'var(--clr-warning)' : 'var(--clr-success)')"
+                        :percent-complete=certificate.expire_percentage
+                        :color-complete="certificate.has_expired ? 'var(--clr-danger)' : 'var(--clr-text-muted)'"
+                        :color-incomplete="certificate.has_expired ? 'var(--clr-danger)' : (true ? 'var(--clr-warning)' : 'var(--clr-success)')"
                     />
                     <div class="expire__text">
                         <p>{{ moment(certificate.expires_on).format('DD MMMM YYYY') }}</p>
