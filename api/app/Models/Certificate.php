@@ -28,7 +28,7 @@ class Certificate extends Model
         'issued_on',
         'sha256_fingerprint',
         'sha1_fingerprint',
-        'issuer',
+        'issuer_id',
     ];
 
     protected $casts = [
@@ -39,12 +39,12 @@ class Certificate extends Model
 
     public function issuer(): BelongsTo
     {
-        return $this->belongsTo(Certificate::class, 'issuer');
+        return $this->belongsTo(Certificate::class, 'issuer_id');
     }
 
     public function certificates(): HasMany
     {
-        return $this->hasMany(Certificate::class, 'issuer');
+        return $this->hasMany(Certificate::class, 'issuer_id');
     }
 
 }

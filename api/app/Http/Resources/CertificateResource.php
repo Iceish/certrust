@@ -23,12 +23,17 @@ class CertificateResource extends JsonResource
             'country_name' => $this->country_name,
             'state_or_province_name' => $this->state_or_province_name,
             'locality_name' => $this->locality_name,
-            'public_key' => $this->public_key,
-            'private_key' => $this->private_key,
             'expires_on' => $this->expires_on,
-            'issuer' => $this->issuer,
-//            'issuer' => $this->whenLoaded('issuer'),
-
+            $this->mergeWhen($request->query->has('issuer'),
+                [
+                    'issuer' => isset($this->issuer) ? new CertificateResource($this->whenLoaded('issuer')) : $this->id,
+                ]
+            ),
+            $this->mergeWhen($request->query->has('issued_certificates'),
+                [
+                    'issued_certificates' => isset($this->certificates) ? CertificateResource::collection($this->whenLoaded('certificates')) : [],
+                ]
+            ),
         ];
     }
 }

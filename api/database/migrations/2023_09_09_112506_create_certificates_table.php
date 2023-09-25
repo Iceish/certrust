@@ -27,8 +27,8 @@ return new class extends Migration
             $table->string('sha256_fingerprint');
             $table->string('sha1_fingerprint');
             $table->primary('id');
-            $table->uuid('issuer')->nullable();
-            $table->foreign('issuer')->references('id')->on('certificates')->onDelete('cascade');
+            $table->uuid('issuer_id')->nullable();
+            $table->foreign('issuer_id')->references('id')->on('certificates')->onDelete('cascade');
         });
     }
 

@@ -25,7 +25,7 @@ class CertificateFactory extends Factory
             'issued_on' => $this->faker->dateTime,
             'sha256_fingerprint' => $this->faker->sha256,
             'sha1_fingerprint' => $this->faker->sha1,
-            'issuer' => rand(0,1) ? Certificate::factory() : null,
+            'issuer_id' => rand(0,1) ? Certificate::factory() : null,
         ];
     }
 }

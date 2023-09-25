@@ -18,19 +18,12 @@ class CertificateController extends Controller
 
     public function index()
     {
-//        return CertificateResource::collection(Certificate::limit(5)->with('issuer')->get());
-        return CertificateResource::collection(Certificate::limit(5)->get());
+        return CertificateResource::collection(Certificate::with(['issuer','certificates'])->get());
     }
 
     public function show(Certificate $certificate)
     {
-        Certificate::find($certificate->id);
-        return response()->json(
-            [
-                'certificate' => $certificate,
-            ],
-            200
-        );
+        return new CertificateResource(Certificate::find($certificate->id));
     }
 
     public function destroy(Certificate $certificate)
