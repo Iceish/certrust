@@ -69,8 +69,11 @@
 
 <style scoped lang="scss">
     .card{
+        height: 100%;
+
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         gap: var(--size-spacing-m);
 
         &__header{
@@ -124,7 +127,7 @@
 
     .grid-card{
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
         gap: var(--size-spacing-m);
     }
 </style>
