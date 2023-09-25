@@ -14,7 +14,7 @@ const router = createRouter({
             path: '/',
             name: 'home',
             component: HomeView,
-            meta: { layout: DashboardLayout }
+            meta: { layout: 'DashboardLayout' }
         },
         // Certificates
         {
