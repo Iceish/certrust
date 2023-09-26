@@ -12,7 +12,7 @@ class CertificateFactory extends Factory
     public function definition(): array
     {
         return [
-            'type' => $this->faker->randomElement([0,1,2]),
+            'type' => -1,
             'common_name' => $this->faker->domainName,
             'organization' => $this->faker->company,
             'organization_unit' => $this->faker->companySuffix,
@@ -25,7 +25,7 @@ class CertificateFactory extends Factory
             'issued_on' => $this->faker->dateTime,
             'sha256_fingerprint' => $this->faker->sha256,
             'sha1_fingerprint' => $this->faker->sha1,
-            'issuer_id' => rand(0,1) ? Certificate::factory() : null,
+            'issuer_id' => null,
         ];
     }
 }

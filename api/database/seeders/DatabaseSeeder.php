@@ -13,6 +13,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Certificate::factory(10)->create();
+        for ($i = 0; $i < 5; $i++) {
+            Certificate::factory(state : [ 'type' => 0 ])
+                ->has(
+                    Certificate::factory(rand(0,3), [ 'type' => 1 ])
+                        ->has(Certificate::factory(rand(0,3), [ 'type' => 1 ]))
+                        ->has(Certificate::factory(rand(0,3), [ 'type' => 2 ]))
+                    , 'certificates'
+                )
+                ->has(Certificate::factory(rand(0,3), [ 'type' => 2 ]), 'certificates')
+                ->create();
+        }
+
     }
 }
