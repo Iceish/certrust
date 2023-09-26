@@ -6,22 +6,28 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\CertificateResource;
 use App\Models\Certificate;
 use App\Requests\Certificate\CreateCertificateRequest;
+use App\Services\CertificateService;
 use App\Services\OpensslService;
 
 class CertificateController extends Controller
 {
     public function __construct(
         private readonly OpensslService $opensslService,
+        private readonly CertificateService $certificateService
     ){}
 
     public function index()
     {
-        return CertificateResource::collection(Certificate::with(['issuer','certificates'])->get());
+        return CertificateResource::collection(
+            Certificate::with(['issuer','certificates'])->get()
+        );
     }
 
     public function show(Certificate $certificate)
     {
-        return CertificateResource::make(Certificate::with(['issuer','certificates'])->find($certificate->id));
+        return CertificateResource::make(
+            Certificate::with(['issuer','certificates'])->find($certificate->id)
+        );
     }
 
     public function destroy(Certificate $certificate)
@@ -76,6 +82,16 @@ class CertificateController extends Controller
             'Content-Type' => 'application/octet-stream',
             'Content-Disposition' => "attachment; filename=$certificate->common_name.$extension",
         ]);
+    }
+
+    public function path(Certificate $certificate)
+    {
+        return response()->json(
+            [
+                'data' => $this->certificateService->getCertificatePath($certificate)
+            ],
+            200
+        );
     }
 
 }

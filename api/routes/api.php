@@ -24,4 +24,5 @@ Route::controller(CertificateController::class)->name('certificates.')->prefix('
     Route::post('/create', 'store')->name('store');
     Route::get('/{certificate}', 'show')->name('show');
     Route::get('/{certificate}/download/{field}', 'download')->name('download')->where('field', 'public_key|private_key');
+    Route::get('/{certificate}/path', 'path')->name('path');
 });
