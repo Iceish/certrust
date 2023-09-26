@@ -19,7 +19,7 @@ provide('app:layout', layout);
         <template #default>
             <div>
               <component :is="layout">
-                <RouterView />
+                <RouterView :key="$route.path" />
               </component>
             </div>
         </template>
