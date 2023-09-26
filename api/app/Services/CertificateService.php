@@ -1,10 +1,22 @@
 <?php
 
 namespace App\Services;
+use App\Enums\CertificateTypeEnum;
 use App\Models\Certificate;
 
 class CertificateService
 {
+    public function getCertificatePath(Certificate $certificate): \Illuminate\Support\Collection
+    {
+        $path = collect();
+        while ($certificate->type !== CertificateTypeEnum::CA){
+            $path->prepend(['id' => $certificate->id, 'common_name' => $certificate->common_name]);
+            $certificate = $certificate->issuer;
+        }
+        $path->prepend(['id' => $certificate->id, 'common_name' => $certificate->common_name]);
+        return $path;
+    }
+
     public function authorityStatistic(Certificate $certificate): array
     {
         $nbIssuedCertificates = $certificate->certificates()->count();
