@@ -224,6 +224,7 @@ console.log(certificatePath.value);
 .certificate-breadcrumb{
     display: flex;
     flex-direction: row;
+    align-items: center;
     flex-wrap: wrap;
 
     &__item{
