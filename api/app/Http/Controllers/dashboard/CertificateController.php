@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\dashboard;
 
-use App\Enums\CertificateTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CertificateResource;
 use App\Models\Certificate;
-use App\Repositories\CertificateRepository;
 use App\Requests\Certificate\CreateCertificateRequest;
 use App\Services\OpensslService;
 
@@ -23,7 +21,7 @@ class CertificateController extends Controller
 
     public function show(Certificate $certificate)
     {
-        return new CertificateResource(Certificate::find($certificate->id));
+        return CertificateResource::make(Certificate::with(['issuer','certificates'])->find($certificate->id));
     }
 
     public function destroy(Certificate $certificate)
