@@ -12,7 +12,7 @@ const route = useRoute();
 const certificate = ref({});
 
 const getCertificate = async () => {
-    await axios.get('http://localhost/api/certificates/' + route.params.id + '?issued_certificates').then(response => {
+    await axios.get('http://localhost/api/certificates/' + route.params.id + '?include=certificates').then(response => {
         certificate.value = response.data.data;
     });
 }
@@ -23,7 +23,7 @@ let days_to_expire = moment(certificate.value.expires_on).diff(moment(certificat
 let days_left = moment(certificate.value.expires_on).diff(moment(), 'days');
 certificate.value.expire_percentage = 100-Math.ceil(days_left*100/days_to_expire);
 
-console.log(certificate.value.issued_certificates);
+console.log(certificate.value.certificates);
 </script>
 
 <template>
@@ -119,7 +119,7 @@ console.log(certificate.value.issued_certificates);
                     </router-link>
                     <CertificateTable
                         :certificates="
-                          certificate.issued_certificates.filter(c => {
+                          certificate.certificates.filter(c => {
                             if(c.type === 1){
                                 return c;
                             }
@@ -138,7 +138,7 @@ console.log(certificate.value.issued_certificates);
                     </router-link>
                     <CertificateTable
                         :certificates="
-                        certificate.issued_certificates.filter(c => {
+                        certificate.certificates.filter(c => {
                           if(c.type === 2){
                               return c;
                           }
