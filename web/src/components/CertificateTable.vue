@@ -34,7 +34,7 @@
                              }"
                 ></span> {{ moment(certificate.expires_on).format('DD MMMM YYYY') }}</p>
                 <p>({{ Math.abs(moment(certificate.expires_on).diff(moment(), 'days')) }} {{ certificate.has_expired ? 'days ago' : 'days left' }})</p></div>
-            <div class="certificate-table__actions"><a href="#"><i class="fa-solid fa-xl fa-magnifying-glass"></i></a></div>
+            <div class="certificate-table__actions"><router-link :to="{ name: 'certificates.show', params : { id: certificate.id } }"><i class="fa-solid fa-xl fa-magnifying-glass"></i></router-link></div>
         </div>
         <div v-else class="cell cell--empty row">
             <div class="muted">No certificates found.</div>
