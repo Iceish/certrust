@@ -11,6 +11,14 @@ class CertificateFactory extends Factory
 
     public function definition(): array
     {
+        $issued_on =
+            $this->faker->dateTimeInInterval('now', '-10 years');
+        $expires_on =
+            rand(0, 10) ?
+                $this->faker->dateTimeInInterval($issued_on->format('Y-m-d H:i:s').' +1 day','+ 10 year')
+                :
+                $this->faker->dateTimeInInterval('now','+ ' . rand(2,25) . ' days');
+
         return [
             'type' => -1,
             'common_name' => $this->faker->domainName,
@@ -21,8 +29,8 @@ class CertificateFactory extends Factory
             'locality_name' => $this->faker->city,
             'public_key' => $this->faker->text,
             'private_key' => $this->faker->text,
-            'expires_on' => $this->faker->dateTimeInInterval('now', '+ 1 year'),
-            'issued_on' => $this->faker->dateTime,
+            'issued_on' => $issued_on,
+            'expires_on' => $expires_on,
             'sha256_fingerprint' => $this->faker->sha256,
             'sha1_fingerprint' => $this->faker->sha1,
             'issuer_id' => null,
