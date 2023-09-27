@@ -66,6 +66,10 @@ certificate.value.expire_percentage = 100-Math.ceil(days_left*100/days_to_expire
                                     <div>Locality name</div>
                                     <div>{{ certificate.locality_name }}</div>
                                 </li>
+                                <li>
+                                    <div>Issued on</div>
+                                    <div>{{ moment(certificate.issued_on).format('DD MMMM YYYY') }}</div>
+                                </li>
                             </ul>
                         </div>
                     </div>
