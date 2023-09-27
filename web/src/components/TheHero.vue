@@ -1,5 +1,6 @@
 <script setup>
 import Cookies from "@/assets/js/cookies";
+import TheBreadcrumb from "@/components/TheBreadcrumb.vue";
   const themeSwitch = (e) => {
     if (e.target.checked){
       Cookies.set("theme", "dark")
@@ -14,9 +15,7 @@ import Cookies from "@/assets/js/cookies";
 
 <template>
   <div class="hero">
-    <div class="breadcrumb">
-      @yield('breadcrumb')
-    </div>
+    <TheBreadcrumb/>
 
     <div class="theme-switch">
       <label for="theme-switch__btn">
