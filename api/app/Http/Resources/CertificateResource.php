@@ -29,6 +29,7 @@ class CertificateResource extends JsonResource
             'issued_on' => $this->whenNotNull($this->issued_on),
             'expires_on' => $this->whenNotNull($this->expires_on),
             'has_expired' => $this->whenNotNull($this->expires_on?->isPast()),
+            'expire_soon' => $this->whenNotNull($this->expires_on?->diffInDays(now()) < 30),
             'issuer' => $this->when(in_array('issuer', $include),CertificateResource::make($this->whenLoaded('issuer'))),
             'certificates' => $this->when(in_array('certificates', $include),CertificateResource::collection($this->whenLoaded('certificates'))),
         ];
