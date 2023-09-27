@@ -29,8 +29,6 @@ await getCertificatePath();
 let days_to_expire = moment(certificate.value.expires_on).diff(moment(certificate.value.issued_on), 'days');
 let days_left = moment(certificate.value.expires_on).diff(moment(), 'days');
 certificate.value.expire_percentage = 100-Math.ceil(days_left*100/days_to_expire);
-
-console.log(certificatePath.value);
 </script>
 
 <template>
@@ -107,10 +105,10 @@ console.log(certificatePath.value);
         <template #body>
             <div class="certificate-breadcrumb">
                 <i class="fa-solid fa-building-lock certificate-breadcrumb__item"></i>
-                <a v-for="(path, index) of certificatePath" href="#" class="certificate-breadcrumb__item">
+                <router-link v-for="(path, index) of certificatePath" :to="{ name : 'certificates.show', params: { id: path.id} }" class="certificate-breadcrumb__item">
                     {{ path.common_name }}
                     <span v-if="index !== certificatePath.length-1"><i class="certificate-breadcrumb__item fa-solid fa-arrow-right"></i></span>
-                </a>
+                </router-link>
             </div>
         </template>
     </Container>
