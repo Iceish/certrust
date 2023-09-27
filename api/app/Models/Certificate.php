@@ -53,12 +53,8 @@ class Certificate extends Model
         Builder $query,
         ?string $type,
     ) : void {
-
-        $query->when(
-            value : $type,
-            callback: static function($query, $type) {
-                $query->where('type', '=', $type);
-            }
-        );
+        if (isset($type)){
+            $query->where('type', '=', $type);
+        }
     }
 }
