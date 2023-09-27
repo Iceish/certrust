@@ -25,9 +25,9 @@
         </template>
     </Container>
 
-    <a href="#" class="btn btn--primary" style="align-self: start;">
+    <router-link :to="{ name : 'certificates.create', query : { type: 0 }}" class="btn btn--primary" style="align-self: start;">
         <i class="fa-regular fa-square-plus"></i> <p>New CA-Root</p>
-    </a>
+    </router-link>
 
     <div class="grid-card">
         <Container v-for="rootAuthority in rootAuthorities">

@@ -1,6 +1,12 @@
 <script setup>
-
 import Container from "@/components/Container.vue";
+import {useRoute} from "vue-router";
+
+const route = useRoute();
+
+const type = route.query.type;
+const issuer = route.query.issuer;
+
 </script>
 
 <template>
@@ -15,11 +21,9 @@ import Container from "@/components/Container.vue";
 
     <Container>
         <template #body>
-            <form class="form" action="#" method="POST">
-                <input type="hidden" name="type" value="#">
-<!--                @if(!empty(Request::get('issuer')))-->
-                <input type="hidden" name="issuer" value="#">
-<!--                @endif-->
+            <form class="form" action="http://localhost/api/certificates/create" method="POST">
+                <input type="hidden" name="type" :value="type">
+                <input v-if="issuer" type="hidden" name="issuer" :value="issuer">
 
                 <div class="form__field">
                     <label for="common_name">Common Name *</label>

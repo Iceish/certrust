@@ -29,6 +29,8 @@ await getCertificatePath();
 let days_to_expire = moment(certificate.value.expires_on).diff(moment(certificate.value.issued_on), 'days');
 let days_left = moment(certificate.value.expires_on).diff(moment(), 'days');
 certificate.value.expire_percentage = 100-Math.ceil(days_left*100/days_to_expire);
+
+console.log(certificate)
 </script>
 
 <template>
@@ -123,7 +125,7 @@ certificate.value.expire_percentage = 100-Math.ceil(days_left*100/days_to_expire
                     <i class="fa-solid fa-lock"></i> <p>Sub-CA</p>
                 </template>
                 <template #body>
-                    <router-link :to="{ name : 'certificates.create'}" class="btn btn--primary">
+                    <router-link :to="{ name : 'certificates.create', query : { type: 1, issuer: certificate.id }}" class="btn btn--primary">
                         <i class="fa-regular fa-square-plus"></i> <p>New</p>
                     </router-link>
                     <CertificateTable
@@ -142,7 +144,7 @@ certificate.value.expire_percentage = 100-Math.ceil(days_left*100/days_to_expire
                     <i class="fa-solid fa-lock"></i> <p>End-user certificate</p>
                 </template>
                 <template #body>
-                    <router-link :to="{ name : 'certificates.create'}" class="btn btn--primary">
+                    <router-link :to="{ name : 'certificates.create', query : { type: 2, issuer: certificate.id  }}" class="btn btn--primary">
                         <i class="fa-regular fa-square-plus"></i> <p>New</p>
                     </router-link>
                     <CertificateTable
