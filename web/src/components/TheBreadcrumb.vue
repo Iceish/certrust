@@ -1,35 +1,36 @@
 <script setup>
+defineProps(['title', 'category']);
 
-import {useRoute} from "vue-router";
-
-const route = useRoute()
-
-
-const breadcrumbs = [
-    { title : 'aze',
-        url : 'https://google.com'
+const categories = {
+    'home' : {
+        'title' : 'Dashboard',
+        'routeName' : 'home',
     },
-    { title : 'qsd',
-        url : 'https://google.fr'
+    'certificates' : {
+        'title' : 'Certificates',
+        'routeName' : 'certificates',
     },
-]
+    'management' : {
+        'title' : 'Management',
+        'routeName' : 'management',
+    },
+    'settings' : {
+        'title' : 'Settings',
+        'routeName' : 'settings',
+    },
+}
 
 </script>
 
 <template>
     <ol class="breadcrumb">
-<!--        @foreach ($breadcrumbs as $breadcrumb)-->
-        <template v-for="(item, index) of breadcrumbs">
-            <li class="breadcrumb__item"><a :href="item.url">{{ item.title}}</a></li>
+        <li class="breadcrumb__item"><p>Dashboard</p></li>
+        <li class="breadcrumb__separator"><p>/</p></li>
+        <li class="breadcrumb__item"><router-link :to="{ name : categories[category].routeName }">{{ categories[category].title }}</router-link></li>
+        <template v-if="title">
             <li class="breadcrumb__separator"><p>/</p></li>
+            <li class="breadcrumb__item"><p>{{ title }}</p></li>
         </template>
-<!--        @if (!is_null($breadcrumb->url) && !$loop->last)-->
-
-<!--        @else-->
-<!--        <li class="breadcrumb__item active">Title</li>-->
-<!--        @endif-->
-
-<!--        @endforeach-->
     </ol>
 </template>
 

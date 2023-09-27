@@ -7,6 +7,7 @@ import axios from 'axios';
 import {ref} from "vue";
 import {useRoute} from "vue-router";
 import moment from "moment";
+import TheBreadcrumb from "@/components/TheBreadcrumb.vue";
 
 const route = useRoute();
 const certificate = ref({});
@@ -34,6 +35,10 @@ console.log(certificate)
 </script>
 
 <template>
+    <Teleport to="#breadcrumb">
+        <TheBreadcrumb category="certificates" :title="certificate.common_name"/>
+    </Teleport>
+
     <div class="certificate-panel">
         <Container class="container--primary">
             <template #header>

@@ -3,6 +3,7 @@
     import axios from 'axios';
     import {ref} from "vue";
     import moment from "moment";
+    import TheBreadcrumb from "@/components/TheBreadcrumb.vue";
 
     const rootAuthorities = ref([]);
 
@@ -16,6 +17,10 @@
 </script>
 
 <template>
+    <Teleport to="#breadcrumb">
+        <TheBreadcrumb category="certificates"/>
+    </Teleport>
+
     <Container class="container--primary">
         <template #header>
             <i class="fa-solid fa-building-lock"></i> <p>Authorities</p>

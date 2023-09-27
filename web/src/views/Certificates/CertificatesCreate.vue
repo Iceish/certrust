@@ -1,6 +1,7 @@
 <script setup>
 import Container from "@/components/Container.vue";
 import {useRoute} from "vue-router";
+import TheBreadcrumb from "@/components/TheBreadcrumb.vue";
 
 const route = useRoute();
 
@@ -10,6 +11,12 @@ const issuer = route.query.issuer;
 </script>
 
 <template>
+    <Teleport to="#breadcrumb">
+        <TheBreadcrumb category="certificates"
+                       :title="'Creating a new ' + (type === '0' ? '\'Root authority\'' : type === '1' ? '\'Subordinate authority\'' : '\'End-user certificate\'')"
+        />
+    </Teleport>
+
     <Container class="container--primary">
         <template #header>
             <h2><i class="fa-solid fa-lock"></i> New Certificate</h2>

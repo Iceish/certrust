@@ -15,7 +15,7 @@ import TheBreadcrumb from "@/components/TheBreadcrumb.vue";
 
 <template>
   <div class="hero">
-    <TheBreadcrumb/>
+      <div id="breadcrumb"></div>
 
     <div class="theme-switch">
       <label for="theme-switch__btn">
