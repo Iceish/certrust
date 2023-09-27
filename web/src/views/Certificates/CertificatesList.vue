@@ -7,7 +7,7 @@
     const rootAuthorities = ref([]);
 
     const getRootAuthorities = async () => {
-        await axios.get('http://localhost/api/certificates').then(response => {
+        await axios.get('http://localhost/api/certificates?filter[type]=0').then(response => {
             rootAuthorities.value = response.data.data;
         });
     }
