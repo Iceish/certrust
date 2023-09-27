@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\CertificateTypeEnum;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -47,4 +48,17 @@ class Certificate extends Model
         return $this->hasMany(Certificate::class, 'issuer_id');
     }
 
+
+    public function scopeFilters(
+        Builder $query,
+        ?string $type,
+    ) : void {
+
+        $query->when(
+            value : $type,
+            callback: static function($query, $type) {
+                $query->where('type', '=', $type);
+            }
+        );
+    }
 }

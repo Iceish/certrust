@@ -18,8 +18,17 @@ class CertificateController extends Controller
 
     public function index()
     {
+        $filters = request()->get('filter');
+
+        $query = Certificate::with(['issuer','certificates'])
+            ->filters(
+                type: $filters['type'] ?? null
+            )
+        ;
+
         return CertificateResource::collection(
-            Certificate::with(['issuer','certificates'])->get()
+            $query
+                ->get()
         );
     }
 
