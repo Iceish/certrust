@@ -55,7 +55,7 @@
                         <div class="status"
                              :class="{
                                 'status--danger': rootAuthority.has_expired,
-                                'status--warning': false,
+                                'status--warning': rootAuthority.expire_soon,
                              }"
                         ></div>
                         <p> {{ rootAuthority.has_expired ? 'Expired on' : 'Expire on' }} {{ moment(rootAuthority.expires_on).format('DD MMMM YYYY') }} <span class="muted">({{ Math.abs(moment(rootAuthority.expires_on).diff(moment(), 'days')) }} {{ rootAuthority.has_expired ? 'days ago' : 'days left' }})</span></p>

@@ -84,7 +84,7 @@ certificate.value.expire_percentage = 100-Math.ceil(days_left*100/days_to_expire
                         title="Expire time"
                         :percent-complete=certificate.expire_percentage
                         :color-complete="certificate.has_expired ? 'var(--clr-danger)' : 'var(--clr-text-muted)'"
-                        :color-incomplete="certificate.has_expired ? 'var(--clr-danger)' : (true ? 'var(--clr-warning)' : 'var(--clr-success)')"
+                        :color-incomplete="certificate.has_expired ? 'var(--clr-danger)' : (certificate.expire_soon ? 'var(--clr-warning)' : 'var(--clr-success)')"
                     />
                     <div class="expire__text">
                         <p>{{ moment(certificate.expires_on).format('DD MMMM YYYY') }}</p>

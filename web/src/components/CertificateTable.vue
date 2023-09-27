@@ -30,7 +30,7 @@
                 <p><span
                     class="status" :class="{
                                 'status--danger': certificate.has_expired,
-                                'status--warning': false,
+                                'status--warning': certificate.expire_soon,
                              }"
                 ></span> {{ moment(certificate.expires_on).format('DD MMMM YYYY') }}</p>
                 <p>({{ Math.abs(moment(certificate.expires_on).diff(moment(), 'days')) }} {{ certificate.has_expired ? 'days ago' : 'days left' }})</p></div>
