@@ -65,7 +65,7 @@ class CertificateController extends Controller
             "private_key" => $authority['private_key'],
             "expires_on" => (new \DateTime())->modify($data['validity_days'] . ' days'),
             "issued_on" => new \DateTime(),
-            "issuer" => $data['issuer'] ?? null,
+            "issuer_id" => $data['issuer'] ?? null,
             "sha256_fingerprint" => $authority['fingerprints']['sha256'],
             "sha1_fingerprint" => $authority['fingerprints']['sha1'],
         ];
