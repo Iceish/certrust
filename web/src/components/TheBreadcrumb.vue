@@ -48,7 +48,7 @@ const categories = {
     }
     &__item{
         color: var(--clr-text-muted);
-        &.active{
+        a:hover{
             color: var(--clr-secondary);
         }
     }
