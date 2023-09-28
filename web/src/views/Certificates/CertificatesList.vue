@@ -4,6 +4,7 @@
     import {ref} from "vue";
     import moment from "moment";
     import TheBreadcrumb from "@/components/TheBreadcrumb.vue";
+    import MountedTeleport from "@/components/MountedTeleport.vue";
 
     const rootAuthorities = ref([]);
 
@@ -17,9 +18,9 @@
 </script>
 
 <template>
-    <Teleport to="#breadcrumb">
+    <MountedTeleport to="#breadcrumb">
         <TheBreadcrumb category="certificates"/>
-    </Teleport>
+    </MountedTeleport>
 
     <Container class="container--primary">
         <template #header>

@@ -1,12 +1,14 @@
 <script setup>
-
+import MountedTeleport from "@/components/MountedTeleport.vue";
 import TheBreadcrumb from "@/components/TheBreadcrumb.vue";
+
+
 </script>
 
 <template>
-    <Teleport to="#breadcrumb">
+    <MountedTeleport to="#breadcrumb">
         <TheBreadcrumb category="home"/>
-    </Teleport>
+    </MountedTeleport>
 
   <p>Home view.</p>
 </template>

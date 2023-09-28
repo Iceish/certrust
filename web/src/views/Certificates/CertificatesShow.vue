@@ -8,6 +8,7 @@ import {ref} from "vue";
 import {useRoute} from "vue-router";
 import moment from "moment";
 import TheBreadcrumb from "@/components/TheBreadcrumb.vue";
+import MountedTeleport from "@/components/MountedTeleport.vue";
 
 const route = useRoute();
 const certificate = ref({});
@@ -35,9 +36,9 @@ console.log(certificate)
 </script>
 
 <template>
-    <Teleport to="#breadcrumb">
+    <MountedTeleport to="#breadcrumb">
         <TheBreadcrumb category="certificates" :title="certificate.common_name"/>
-    </Teleport>
+    </MountedTeleport>
 
     <div class="certificate-panel">
         <Container class="container--primary">

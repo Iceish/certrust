@@ -8,7 +8,8 @@ import TheHero from "@/components/TheHero.vue";
     <TheHeader/>
     <main>
       <TheHero/>
-      <slot/>
+        <RouterView/>
+<!--      <slot/>-->
     </main>
   </div>
 </template>

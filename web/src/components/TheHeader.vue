@@ -11,7 +11,7 @@
           <router-link active-class="nav__link--active" class="nav__link" :to="{ name: 'home'}"><i class="fa-solid fa-house"></i><span class="nav__link--text"> Home</span></router-link>
         </li>
         <li>
-          <router-link active-class="nav__link--active" class="nav__link" :to="{ name: 'certificates'}"><i class="fa-solid fa-lock"></i><span class="nav__link--text"> Certificates</span></router-link>
+          <router-link active-class="nav__link--active" class="nav__link" :to="{ name: 'certificates.list'}"><i class="fa-solid fa-lock"></i><span class="nav__link--text"> Certificates</span></router-link>
         </li>
         <li>
           <router-link active-class="nav__link--active" class="nav__link" :to="{ name: 'management'}"><i class="fa-solid fa-user"></i><span class="nav__link--text"> Management</span></router-link>

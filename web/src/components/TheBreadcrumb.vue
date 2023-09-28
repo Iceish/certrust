@@ -8,7 +8,7 @@ const categories = {
     },
     'certificates' : {
         'title' : 'Certificates',
-        'routeName' : 'certificates',
+        'routeName' : 'certificates.list',
     },
     'management' : {
         'title' : 'Management',
