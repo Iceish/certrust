@@ -9,10 +9,17 @@ import {useRoute} from "vue-router";
 import moment from "moment";
 import TheBreadcrumb from "@/components/TheBreadcrumb.vue";
 import MountedTeleport from "@/components/MountedTeleport.vue";
+import router from "@/router";
 
 const route = useRoute();
 const certificate = ref({});
 const certificatePath = ref({});
+
+const deleteCertificate = async () => {
+    await axios.delete('http://localhost/api/certificates/' + route.params.id).then(response => {
+        router.push({ name: 'certificates.list' });
+    });
+}
 
 const getCertificate = async () => {
     await axios.get('http://localhost/api/certificates/' + route.params.id + '?include=certificates').then(response => {
@@ -32,7 +39,6 @@ let days_to_expire = moment(certificate.value.expires_on).diff(moment(certificat
 let days_left = moment(certificate.value.expires_on).diff(moment(), 'days');
 certificate.value.expire_percentage = 100-Math.ceil(days_left*100/days_to_expire);
 
-console.log(certificate)
 </script>
 
 <template>
@@ -107,7 +113,7 @@ console.log(certificate)
                 <div class="certificate-panel__actions">
                     <a :href="'http://localhost/api/certificates/' + certificate.id + '/download/public_key'" class="muted"><i class="fa-solid fa-file-lines"></i><p>Download certificate (.crt)</p></a>
                     <a :href="'http://localhost/api/certificates/' + certificate.id + '/download/private_key'" class="muted"><i class="fa-solid fa-key"></i><p>Download private key (.key)</p></a>
-                    <p class="danger" style="cursor: pointer;" ><i class="fa-solid fa-trash"></i> Delete</p>
+                    <p class="danger" @click="deleteCertificate" style="cursor: pointer;" ><i class="fa-solid fa-trash"></i> Delete</p>
                 </div>
             </template>
         </Container>
