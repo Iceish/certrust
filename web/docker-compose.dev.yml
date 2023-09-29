@@ -1,0 +1,20 @@
+services:
+  dev-certrust-web:
+    image: certrust-web
+    restart: unless-stopped
+    container_name: 'dev-certrust-web'
+    build:
+      context: ./
+      target: 'develop-stage'
+    command: /bin/sh -c "npm i && npm --host run dev"
+    ports:
+      - 3000:3000
+      - 24012:24012
+    volumes:
+      - ./:/usr/src/app
+    networks:
+      net-dev-certrust-web:
+
+networks:
+  net-dev-certrust-web:
+    driver: bridge
