@@ -3,12 +3,38 @@ import Container from "@/components/Container.vue";
 import {useRoute} from "vue-router";
 import TheBreadcrumb from "@/components/TheBreadcrumb.vue";
 import MountedTeleport from "@/components/MountedTeleport.vue";
+import {reactive} from "vue";
+import axios from "axios";
+import router from "@/router";
 
 const route = useRoute();
 
 const type = route.query.type;
 const issuer = route.query.issuer;
 
+let certificate = reactive({
+    type: type,
+    issuer: issuer,
+    common_name: '',
+    organization: '',
+    organization_unit: '',
+    country_name: '',
+    state_or_province_name: '',
+    locality_name: '',
+    validity_days: '',
+})
+
+const sendForm = () => {
+    axios.post('http://localhost/api/certificates/create',{
+        ...certificate
+    }).then((response) => {
+        console.log(response);
+    }).catch((error) => {
+        console.log(error);
+    })
+
+    router.push({name: 'certificates.list'});
+}
 </script>
 
 <template>
@@ -29,41 +55,37 @@ const issuer = route.query.issuer;
 
     <Container>
         <template #body>
-            <form class="form" action="http://localhost/api/certificates/create" method="POST">
-                <input type="hidden" name="type" :value="type">
-                <input v-if="issuer" type="hidden" name="issuer" :value="issuer">
-
+            <form class="form" @submit.prevent="sendForm">
                 <div class="form__field">
                     <label for="common_name">Common Name *</label>
-                    <input required type="text" id="common_name" name="common_name"/>
+                    <input required type="text" id="common_name" name="common_name" v-model="certificate.common_name"/>
                 </div>
                 <div class="form__field">
                     <label for="organization">Organization *</label>
-                    <input required type="text" id="organization" name="organization"/>
+                    <input required type="text" id="organization" name="organization" v-model="certificate.organization"/>
                 </div>
                 <div class="form__field">
                     <label for="organization_unit">Organization unit</label>
-                    <input type="text" id="organization_unit" name="organization_unit"/>
+                    <input type="text" id="organization_unit" name="organization_unit" v-model="certificate.organization_unit"/>
                 </div>
                 <div class="form__field">
                     <label for="country_name">Country name *</label>
-                    <input required type="text" id="country_name" name="country_name"/>
+                    <input required type="text" id="country_name" name="country_name" v-model="certificate.country_name"/>
                 </div>
                 <div class="form__field">
                     <label for="state_or_province_name">State or province name</label>
-                    <input type="text" id="state_or_province_name" name="state_or_province_name"/>
+                    <input type="text" id="state_or_province_name" name="state_or_province_name" v-model="certificate.state_or_province_name"/>
                 </div>
                 <div class="form__field">
                     <label for="locality_name">Locality name</label>
-                    <input type="text" id="locality_name" name="locality_name"/>
+                    <input type="text" id="locality_name" name="locality_name" v-model="certificate.locality_name"/>
                 </div>
                 <div class="form__field">
                     <label for="validity_days">Validity days *</label>
-                    <input required type="number" id="validity_days" name="validity_days"/>
+                    <input required type="number" id="validity_days" name="validity_days" v-model="certificate.validity_days"/>
                 </div>
 
-
-                <button onclick="this.form.submit()" class="btn btn--primary" type="submit"><i class="fa-solid fa-paper-plane"></i> Submit</button>
+                <button class="btn btn--primary" type="submit"><i class="fa-solid fa-paper-plane"></i> Submit</button>
             </form>
         </template>
     </Container>
