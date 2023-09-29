@@ -2,7 +2,6 @@
 import Container from "@/components/Container.vue";
 import CertificateTable from "@/components/CertificateTable.vue";
 import Pie from "@/components/Pie.vue";
-
 import axios from 'axios';
 import {ref} from "vue";
 import {useRoute} from "vue-router";
@@ -10,16 +9,11 @@ import moment from "moment";
 import TheBreadcrumb from "@/components/TheBreadcrumb.vue";
 import MountedTeleport from "@/components/MountedTeleport.vue";
 import router from "@/router";
+import swal from "@/assets/js/swal.js";
 
 const route = useRoute();
 const certificate = ref({});
 const certificatePath = ref({});
-
-const deleteCertificate = async () => {
-    await axios.delete('http://localhost/api/certificates/' + route.params.id).then(response => {
-        router.push({ name: 'certificates.list' });
-    });
-}
 
 const getCertificate = async () => {
     await axios.get('http://localhost/api/certificates/' + route.params.id + '?include=certificates').then(response => {
@@ -30,6 +24,20 @@ const getCertificatePath = async () => {
     await axios.get('http://localhost/api/certificates/' + route.params.id + '/path').then(response => {
         certificatePath.value = response.data.data;
     });
+}
+
+const deleteCertificate = async () => {
+    swal.Confirm.fire({
+        confirmButtonText: 'Yes, delete ' + certificate.value.common_name + ' !'
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            axios.delete('http://localhost/api/certificates/' + route.params.id).then(response => {
+                router.push({ name: 'certificates.list' });
+            });
+
+        }
+    })
 }
 
 await getCertificate();
