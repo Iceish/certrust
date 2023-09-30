@@ -24,13 +24,62 @@ Certrust is an open-source, self-hosted Local SSL Certificate Manager designed t
 
 ## 🚀 Getting Started
 
+### Requirements
+- [Docker](https://docs.docker.com/engine/install/) & [Docker-compose](https://docs.docker.com/compose/install/).
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+
 ### Production
 
-_Coming soon._
+<details open>
+<summary><strong>With official images. <em>(recommended)</em></strong></summary>
+Comming soon...
+</details>
+
+<details>
+<summary><strong>With source code.</strong></summary>
+
+1. **Clone the Repository:** Begin by cloning this repository to your local machine:
+
+   ```bash
+   git clone https://github.com/EnzoGzz/certrust.git -b stable
+   cd certrust/
+   ```
+   
+2. **Configure your environment:** 
+   1. In the Api folder, copy the `.env.example` file to `.env.production` and update the environment variables to match your configuration.
+
+      ```bash
+      cd api/
+      cp .env.example .env.production
+      vim .env.production
+      cd ../
+      ```
+   2. In the docker-compose.prod.yml file _(in the root folder)_, update the environment variables to match your configuration.
+
+      ```bash
+      vim docker-compose.prod.yml
+      ```
+
+3. **Start Certrust:** Start Certrust using Docker Compose:
+
+   ```bash
+   docker-compose -f docker-compose.prod.yml up -d
+   ```
+
+4. **Initialize the database:** Certrust needs to create tables in the database for the first time. Run the following command to initialize the database:
+
+   ```bash
+   docker-compose -f docker-compose.prod.yml exec api php artisan migrate
+   ```
+
+5. **Access the App:** Once the containers are up and running, access the Certrust app through your browser by visiting [http://localhost/](http://localhost/).
+
+</details>
 
 ### Development
 
 See [api/](api/) for more information about Laravel API.
+
 See [web/](web/) for more information about Svelte-kit Web UI.
 
 ## ❤️ Contributing
