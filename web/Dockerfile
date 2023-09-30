@@ -2,6 +2,7 @@
 FROM node:20.7.0-alpine as develop-stage
 WORKDIR /usr/src/app
 COPY . .
+RUN npm install
 
 # build stage
 FROM develop-stage as build-stage
