@@ -26,15 +26,11 @@ COPY .env.production /var/www/html/.env
 # Install composer dependencies
 RUN composer install --no-interaction --no-dev --prefer-dist --optimize-autoloader
 
-# Initialize the application
-RUN php artisan config:clear && \
-    php artisan config:cache && \
-    php artisan key:generate
-
 # Assign permissions of the working directory to the www-data user
 RUN chown -R www-data:www-data \
     /var/www/html/storage \
-    /var/www/html/bootstrap/cache
+    /var/www/html/bootstrap/cache \
+    && chmod +x /var/www/html/certrust-cli.sh
 
 # Expose port 9000 and start php-fpm server (for FastCGI Process Manager)
 EXPOSE 9000
