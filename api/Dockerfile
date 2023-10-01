@@ -1,8 +1,5 @@
 FROM php:8.2-fpm
 
-# Copy composer.lock and composer.json into the working directory
-COPY composer.lock composer.json /var/www/html/
-
 # Set working directory
 WORKDIR /var/www/html/
 
@@ -16,8 +13,8 @@ RUN apt-get update && apt-get install -y \
     curl
 
 # Install extensions for php
-RUN docker-php-ext-install pdo_mysql
-RUN docker-php-ext-install gd
+RUN docker-php-ext-install pdo_mysql && \
+    docker-php-ext-install gd
 
 # Install composer (php package manager)
 COPY --from=composer/composer:latest-bin /composer /usr/bin/composer
@@ -25,6 +22,9 @@ COPY --from=composer/composer:latest-bin /composer /usr/bin/composer
 # Copy existing application directory contents to the working directory
 COPY . /var/www/html
 COPY .env.production /var/www/html/.env
+
+# Install composer dependencies
+RUN composer install --no-interaction --no-dev --prefer-dist --optimize-autoloader
 
 # Initialize the application
 RUN php artisan config:clear && \
