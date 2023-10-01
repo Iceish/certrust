@@ -16,7 +16,7 @@ Certrust is an open-source, self-hosted Local SSL Certificate Manager designed t
 
 - **Certificate Generation:** Generate SSL certificates for your local domains using the authorities you've created.
 
-- **Certificate Renewal:** Automate certificate renewal processes to ensure continuous SSL security.
+- **Certificate Renewal _(Work in progress)_:** Automate certificate renewal processes to ensure continuous SSL security.
 
 - **Docker Integration:** Certrust is Docker-ready, making it convenient for users to self-host the service without complicated setup procedures.
 
@@ -81,6 +81,12 @@ Comming soon...
 See [api/](api/) for more information about Laravel API.
 
 See [web/](web/) for more information about Svelte-kit Web UI.
+
+## 🗺️ Roadmap
+
+To keep a track of our progress, we maintain a [roadmap](ROADMAP.md) for the project. The roadmap contains a list of features that we are currently working on and features that we plan to work on in the future.
+
+- See [ROADMAP.md](ROADMAP.md) for more information about incoming changes.
 
 ## ❤️ Contributing
 
