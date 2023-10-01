@@ -66,10 +66,10 @@ Comming soon...
    docker-compose -f docker-compose.prod.yml up -d
    ```
 
-4. **Initialize the database:** Certrust needs to create tables in the database for the first time. Run the following command to initialize the database:
+4. **Initialize the app:** Certrust needs to initialize the app for the first time. Run the following command:
 
    ```bash
-   docker-compose -f docker-compose.prod.yml exec api php artisan migrate
+   docker-compose -f docker-compose.prod.yml exec api ./certrust-cli.sh init
    ```
 
 5. **Access the App:** Once the containers are up and running, access the Certrust app through your browser by visiting [http://localhost/](http://localhost/).
