@@ -37,64 +37,62 @@ Here is a docker-compose example to get you started quickly.
 
 ```yaml
 services:
-  api:
-    image: iceish/certrust:api-v0.1.0-beta
-    container_name: ct-certrust-api
-    tty: true
-    environment:
-      SERVICE_NAME: api
-      SERVICE_TAGS: dev
-    working_dir: /var/www/html
-    networks:
-      - net-certrust
+    api:
+        image: iceish/certrust:api-v0.1.0-beta
+        container_name: ct-certrust-api
+        tty: true
+        environment:
+            SERVICE_NAME: api
+            SERVICE_TAGS: dev
+        working_dir: /var/www/html
+        networks:
+            - net-certrust
 
-  client:
-    image: iceish/certrust:api-v0.1.0-beta
-    container_name: ct-certrust-client
-    networks:
-      - net-certrust
+    client:
+        image: iceish/certrust:client-v0.1.0-beta
+        container_name: ct-certrust-client
+        networks:
+            - net-certrust
 
-  database:
-    image: mariadb:11.1.2
-    container_name: ct-certrust-database
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: certrust
-      MYSQL_USER: certrust
-      MYSQL_PASSWORD: certrust
-    healthcheck:
-      test: [ "CMD", "healthcheck.sh", "--su-mysql", "--connect", "--innodb_initialized" ]
-      interval: 10s
-      timeout: 5s
-      retries: 3
-    volumes:
-      - vol-certrust-database:/var/lib/mysql
-    networks:
-      - net-certrust
+    database:
+        image: mariadb:11.1.2
+        container_name: ct-certrust-database
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: certrust
+            MYSQL_USER: certrust
+            MYSQL_PASSWORD: certrust
+        healthcheck:
+            test: [ "CMD", "healthcheck.sh", "--su-mysql", "--connect", "--innodb_initialized" ]
+            interval: 10s
+            timeout: 5s
+            retries: 3
+        volumes:
+            - vol-certrust-database:/var/lib/mysql
+        networks:
+            - net-certrust
 
-  webserver:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    container_name: ct-certrust-webserver
-    depends_on:
-      api:
-        condition: service_started
-      client:
-        condition: service_started
-      database:
-        condition: service_healthy
-    tty: true
-    ports:
-      - 80:80
-    networks:
-      - net-certrust
+    webserver:
+        image: iceish/certrust:webserver
+        container_name: ct-certrust-webserver
+        depends_on:
+            api:
+                condition: service_started
+            client:
+                condition: service_started
+            database:
+                condition: service_healthy
+        tty: true
+        ports:
+            - 80:80
+        networks:
+            - net-certrust
 
 networks:
-  net-certrust:
+    net-certrust:
 
 volumes:
-  vol-certrust-database:
+    vol-certrust-database:
 ```
 
 </details>
