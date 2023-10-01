@@ -41,7 +41,7 @@ Comming soon...
 1. **Clone the Repository:** Begin by cloning this repository to your local machine:
 
    ```bash
-   git clone https://github.com/EnzoGzz/certrust.git -b stable
+   git clone https://github.com/Iceish/certrust.git -b stable
    cd certrust/
    ```
    

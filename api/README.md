@@ -15,7 +15,7 @@ This is the API for Certrust. It is built with laravel. It is a [Docker](https:/
 1. **Clone the Repository:** Begin by cloning this repository to your local machine:
 
    ```bash
-   https://github.com/EnzoGzz/certrust.git -b dev
+   https://github.com/Iceish/certrust.git -b dev
    cd certrust/api
    ```
 

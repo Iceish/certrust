@@ -1,1 +1,1 @@
-To report a security vulnerability to Certrust Team, use https://github.com/EnzoGzz/certrust/security/advisories/new
+To report a security vulnerability to Certrust Team, use https://github.com/Iceish/certrust/security/advisories/new

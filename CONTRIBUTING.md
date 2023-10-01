@@ -6,9 +6,9 @@ Certrust is an open-source project, and we welcome contributions from the commun
 
 There are several ways to contribute to Certrust:
 
-1. **Reporting Bugs:** If you encounter a bug or issue while using Certrust, please [open an issue](https://github.com/EnzoGzz/certrust/issues) and provide detailed information about the problem, including steps to reproduce it.
+1. **Reporting Bugs:** If you encounter a bug or issue while using Certrust, please [open an issue](https://github.com/Iceish/certrust/issues) and provide detailed information about the problem, including steps to reproduce it.
 
-2. **Suggesting Enhancements:** Have an idea for a new feature or improvement? We'd love to hear it! [Open an issue](https://github.com/EnzoGzz/certrust/issues) and describe your suggestion in detail.
+2. **Suggesting Enhancements:** Have an idea for a new feature or improvement? We'd love to hear it! [Open an issue](https://github.com/Iceish/certrust/issues) and describe your suggestion in detail.
 
 3. **Writing Code:** If you're a developer, you can contribute by submitting pull requests. Fork the repository, create a branch for your changes, and then submit a pull request for review.
 
@@ -20,12 +20,12 @@ There are several ways to contribute to Certrust:
 
 To contribute to Certrust, follow these steps:
 
-1. **Fork the Repository:** Click the "Fork" button on the [Certrust repository](https://github.com/EnzoGzz/certrust) to create your copy of the project.
+1. **Fork the Repository:** Click the "Fork" button on the [Certrust repository](https://github.com/Iceish/certrust) to create your copy of the project.
 
 2. **Clone Your Fork:** Clone your forked repository to your local machine:
 
    ```bash
-   git clone https://github.com/EnzoGzz/certrust.git
+   git clone https://github.com/Iceish/certrust.git
    ```
 
 3. **Create a Branch:** Create a new branch for your changes:
@@ -48,7 +48,7 @@ To contribute to Certrust, follow these steps:
    git push origin feature-name
    ```
 
-7. **Submit a Pull Request:** Go to the [Certrust repository](https://github.com/EnzoGzz/certrust) and create a pull request. Describe your changes and provide context for reviewers.
+7. **Submit a Pull Request:** Go to the [Certrust repository](https://github.com/Iceish/certrust) and create a pull request. Describe your changes and provide context for reviewers.
 
 ### Commit messages
 
