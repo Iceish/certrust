@@ -3,9 +3,6 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Certificate;
-use App\Repositories\CertificateRepository;
-use App\Services\OpensslService;
 
 class HomeController extends Controller
 {

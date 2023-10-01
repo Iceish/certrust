@@ -1,13 +1,19 @@
 {
-    "name": "laravel/laravel",
+    "name": "certrust/api",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "Certrust api application.",
     "keywords": ["laravel", "framework"],
-    "license": "MIT",
+    "license": "GPL-3.0-only",
+    "authors": [
+        {
+            "name": "EnzoGzz",
+            "homepage": "https://github.com/EnzoGzz",
+            "role": "Owner, Developer"
+        }
+    ],
     "require": {
         "php": "^8.1",
         "ext-openssl": "*",
-        "diglactic/laravel-breadcrumbs": "^8.1",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",

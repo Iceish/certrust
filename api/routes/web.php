@@ -1,9 +1,5 @@
 <?php
 
-use App\Http\Controllers\dashboard\CertificateController;
-use App\Http\Controllers\dashboard\HomeController;
-use App\Http\Controllers\dashboard\ManagementController;
-use App\Http\Controllers\dashboard\SettingsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +12,3 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/debug', function () {
-    return "Debug view..";
-});

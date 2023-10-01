@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\dashboard\CertificateController;
 use App\Http\Controllers\dashboard\HomeController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
